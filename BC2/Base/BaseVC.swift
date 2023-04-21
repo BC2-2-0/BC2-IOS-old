@@ -18,15 +18,14 @@ class BaseVC: UIViewController {
         $0.play()
     }
     
-    lazy var coin = LottieAnimationView(name: "Coin").then {
-        $0.backgroundColor = UIColor.black
+    lazy var coin = LottieAnimationView(name: "coin").then {
         $0.contentMode = .scaleAspectFill
         $0.loopMode = .loop
         $0.play()
     }
-    lazy var coinAction = LottieAnimationView(name: "CoinAction").then {
+    lazy var coinAction = LottieAnimationView(name: "coinAction").then {
         //$0.backgroundColor = UIColor.black
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
         $0.loopMode = .loop
         $0.play()
     }
@@ -39,8 +38,15 @@ class BaseVC: UIViewController {
         setLayout()
         addTarget()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+         self.navigationItem.hidesBackButton = true
+    }
+    
     func addView(){}
     func setLayout(){}
     func addTarget(){}
+    func viewWillAppear(){}
 }
 

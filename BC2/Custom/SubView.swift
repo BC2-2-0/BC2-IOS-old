@@ -11,18 +11,26 @@ import SnapKit
 
 class SubView: UIView {
     
-    let subView: UIView = UIView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addView()
+        setLayout()
+    }
     
-    func subViewSet(){
-        subView.backgroundColor = .black
-        subView.layer.cornerRadius = 30
-        subView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        subView.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
-        subView.layer.shadowOffset = CGSize(width: 0, height: -5)
-        subView.layer.shadowRadius = 4
-        subView.layer.shadowOpacity = 0.8
-        subView.layer.masksToBounds = true
-        addSubview(subView)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        addView()
+        setLayout()
+    }
+    
+    let subView: UIView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 30
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: -5)
+        $0.layer.shadowRadius = 4
+        $0.layer.shadowOpacity = 0.6
     }
     
     let myAccountLabel = UILabel().then{
@@ -31,32 +39,20 @@ class SubView: UIView {
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addView()
-        setLayout()
-    }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        addView()
-        setLayout()
-    }
-    
     func addView(){
-        subViewSet()
+        addSubview(subView)
         addSubview(myAccountLabel)
     }
     
     func setLayout() {
-        subView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(150)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+        subView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(180)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
-        myAccountLabel.snp.makeConstraints{ make in
-            make.top.equalTo(subView.snp.top).inset(60)
-            make.leading.equalTo(30)
+        myAccountLabel.snp.makeConstraints{
+            $0.top.equalTo(subView.snp.top).offset(40)
+            $0.leading.equalTo(30)
         }
     }
-    
 }

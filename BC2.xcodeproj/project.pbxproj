@@ -28,6 +28,8 @@
 		076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD729EB37A800BD9C79 /* AmountLabel.swift */; };
 		076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD929EB37C900BD9C79 /* PaymentButton.swift */; };
 		076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */; };
+		07BF6AD129EC459800986AF7 /* coin.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD029EC459800986AF7 /* coin.json */; };
+		07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD229ECBAC200986AF7 /* coinAction.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +72,8 @@
 		076A4AD729EB37A800BD9C79 /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		076A4AD929EB37C900BD9C79 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 		076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiningViewController.swift; sourceTree = "<group>"; };
-		076A4ADD29EB5F2800BD9C79 /* Coin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Coin.json; sourceTree = "<group>"; };
-		076A4ADE29EB675000BD9C79 /* CoinAction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoinAction.json; sourceTree = "<group>"; };
+		07BF6AD029EC459800986AF7 /* coin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin.json; sourceTree = "<group>"; };
+		07BF6AD229ECBAC200986AF7 /* coinAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coinAction.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,9 +179,9 @@
 		076A4ABA29EA9C6B00BD9C79 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				07BF6AD029EC459800986AF7 /* coin.json */,
 				076A4ACA29EA9F4300BD9C79 /* block.json */,
-				076A4ADD29EB5F2800BD9C79 /* Coin.json */,
-				076A4ADE29EB675000BD9C79 /* CoinAction.json */,
+				07BF6AD229ECBAC200986AF7 /* coinAction.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -321,6 +323,8 @@
 				076A4A9529EA9C0600BD9C79 /* LaunchScreen.storyboard in Resources */,
 				076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */,
 				076A4ACB29EA9F4300BD9C79 /* block.json in Resources */,
+				07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */,
+				07BF6AD129EC459800986AF7 /* coin.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

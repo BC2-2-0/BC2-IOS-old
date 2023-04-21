@@ -11,6 +11,18 @@ import SnapKit
 
 class AmountLabel: UIView {
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addView()
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        addView()
+        setLayout()
+    }
+    
     let pointLabel = UILabel().then{
         $0.text = "BC2 Point"
         $0.textColor = UIColor(named: "SubTextColor")
@@ -23,30 +35,19 @@ class AmountLabel: UIView {
         $0.font = .boldSystemFont(ofSize: 28)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addView()
-        setLayout()
-    }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        addView()
-        setLayout()
-    }
-    
     func addView(){
         addSubview(pointLabel)
         addSubview(amountLabel)
     }
     
     func setLayout() {
-        pointLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().offset(300)
-            make.leading.equalToSuperview().offset(45)
+        pointLabel.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(200)
+            $0.leading.equalToSuperview().offset(30)
         }
-        amountLabel.snp.makeConstraints{ make in
-            make.top.equalTo(pointLabel.snp.bottom).offset(9)
-            make.leading.equalToSuperview().offset(45)
+        amountLabel.snp.makeConstraints{
+            $0.top.equalTo(pointLabel.snp.bottom).offset(9)
+            $0.leading.equalToSuperview().offset(30)
         }
     }
 }

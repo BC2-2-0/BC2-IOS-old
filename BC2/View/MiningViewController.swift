@@ -9,76 +9,120 @@ import UIKit
 
 class MiningViewController: BaseVC {
     
-    private let HeaderView = Header()
+    private let headerView = Header()
     
     private let sub = SubView().then {
         $0.myAccountLabel.text = "채굴장"
     }
     
-    private let Box = BoxView()
+    private let box = BoxView()
     
-    private let BoxInLabel = AmountLabel()
+    private let boxInLabel = AmountLabel()
     
     private let infoButton = UIButton().then {
         $0.setImage(UIImage(systemName: "info.circle.fill"), for: .normal)
         $0.tintColor = UIColor(named: "Button2Color")
     }
-
-    private let Button1 = PaymentButton().then {
-        $0.paymentButton.backgroundColor = .white
-        $0.paymentButton.setTitle("56221ed7995860546cf055584433e3e9", for: .normal)
-        $0.paymentButton.setTitleColor(UIColor.black, for: .normal)
-        $0.paymentButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        $0.paymentButton.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
-        $0.paymentButton.layer.shadowOffset = CGSize(width: 3, height: 1)
-        $0.paymentButton.layer.shadowRadius = 6
-        $0.paymentButton.layer.shadowOpacity = 1
+    
+    private let miningCodeButton = PaymentButton().then {
+        $0.backgroundColor = .white
+        $0.setTitle("56221ed7995860546cf055584433e3e9", for: .normal)
+        $0.setTitleColor(UIColor.black, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+        $0.layer.shadowOffset = CGSize(width: 2, height: 1)
+        $0.layer.shadowRadius = 5
+        $0.layer.shadowOpacity = 1
     }
     
-    private let Button2 = PaymentButton().then{
-        $0.paymentButton.setTitle("메인으로", for: .normal)
-        $0.paymentButton.backgroundColor = UIColor(named: "Button2Color")
-        $0.paymentButton.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
+    private let mainButton = PaymentButton().then{
+        $0.setTitle("메인으로", for: .normal)
+        $0.backgroundColor = UIColor(named: "Button2Color")
+        $0.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
+        $0.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
+    }
+    
+    override func addTarget() {
+        mainButton.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
     }
     
     override func addView() {
-        view.addSubview(HeaderView)
-        view.addSubview(sub)
-        view.addSubview(Box)
-        view.addSubview(BoxInLabel)
-        view.addSubview(infoButton)
+        view.addSubview(headerView)
         view.addSubview(block)
+        view.addSubview(sub)
+        view.addSubview(box)
+        view.addSubview(boxInLabel)
+        view.addSubview(infoButton)
         view.addSubview(coin)
         view.addSubview(coinAction)
-        view.addSubview(Button1)
-        view.addSubview(Button2)
+        view.addSubview(miningCodeButton)
+        view.addSubview(mainButton)
     }
     
     override func setLayout() {
-        
-        infoButton.snp.makeConstraints{ make in
-            make.width.height.equalTo(50)
-            make.top.equalToSuperview().offset(300)
-            make.leading.equalTo(BoxInLabel.amountLabel.snp.trailing).offset(130)
+        headerView.userNameLabel.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.leading.equalTo(35)
         }
-        block.snp.makeConstraints{ make in
-            make.width.equalTo(115)
-            make.height.equalTo(105)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
-            make.leading.equalTo(230)
+        headerView.helloLabel.snp.makeConstraints{
+            $0.width.equalTo(130)
+            $0.height.equalTo(30)
+            $0.top.equalTo(headerView.userNameLabel.snp.bottom).offset(10)
+            $0.leading.equalTo(35)
         }
-        coinAction.snp.makeConstraints{ make in
-            make.width.height.equalTo(300)
-            make.top.equalTo(BoxInLabel.amountLabel.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+        block.snp.makeConstraints{
+            $0.width.equalTo(115)
+            $0.height.equalTo(105)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+            $0.leading.equalTo(230)
         }
-        coin.snp.makeConstraints{ make in
-            make.width.height.equalTo(200)
-            make.top.equalTo(BoxInLabel.amountLabel.snp.bottom).offset(25)
-            make.centerX.equalToSuperview()
+        sub.snp.makeConstraints{
+            $0.top.equalTo(headerView.snp.bottom).offset(60)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
-        Button2.snp.makeConstraints{ make in
-            make.top.equalTo(Button1.snp.bottom).offset(60)
+        box.snp.makeConstraints{
+            $0.width.equalTo(350)
+            $0.height.equalTo(700)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(sub.snp.top).offset(70)
         }
+        boxInLabel.snp.makeConstraints {
+            $0.top.equalTo(box.snp.top).offset(15)
+            $0.leading.equalTo(box.snp.leading).offset(10)
+        }
+        infoButton.snp.makeConstraints{
+            $0.width.height.equalTo(30)
+            $0.top.equalTo(boxInLabel.pointLabel.snp.top)
+            $0.leading.equalTo(boxInLabel.amountLabel.snp.trailing).offset(120)
+        }
+        coin.snp.makeConstraints{
+            $0.width.height.equalTo(200)
+            $0.top.equalTo(boxInLabel.amountLabel.snp.bottom).offset(35)
+            $0.centerX.equalToSuperview()
+        }
+        coinAction.snp.makeConstraints{
+            $0.width.equalTo(200)
+            $0.top.equalTo(coin.snp.top).offset(-30)
+            $0.bottom.equalTo(coin.snp.bottom).offset(27)
+            $0.centerX.equalToSuperview()
+        }
+        miningCodeButton.snp.makeConstraints{
+            $0.width.equalTo(288)
+            $0.height.equalTo(45)
+            $0.top.equalTo(coin.snp.bottom).offset(37)
+            $0.leading.equalToSuperview().offset(53)
+        }
+        mainButton.snp.makeConstraints{
+            $0.width.equalTo(288)
+            $0.height.equalTo(45)
+            $0.top.equalTo(miningCodeButton.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(53)
+        }
+    }
+    
+    @objc func goToMain(){
+        let nextVC = MainViewController()
+        self.navigationController?.pushViewController(nextVC, animated: false)
     }
 }

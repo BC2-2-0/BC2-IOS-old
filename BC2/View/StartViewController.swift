@@ -47,29 +47,30 @@ class StartViewController: BaseVC{
     }
     
     override func setLayout(){
-        mainLabel.snp.makeConstraints{ make in
-            make.height.equalTo(60)
-            make.width.equalTo(190)
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(60)
-            make.centerX.equalToSuperview()
+        mainLabel.snp.makeConstraints{
+            $0.height.equalTo(60)
+            $0.width.equalTo(190)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(40)
+            $0.centerX.equalToSuperview()
         }
-        subLabel.snp.makeConstraints{ make in
-            make.height.equalTo(17)
-            make.width.equalTo(150)
-            make.top.equalTo(mainLabel.snp.bottom).offset(5)
-            make.centerX.equalToSuperview()
+        subLabel.snp.makeConstraints{
+            $0.height.equalTo(17)
+            $0.width.equalTo(150)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(5)
+            $0.centerX.equalToSuperview()
         }
-        block.snp.makeConstraints{ make in
-            make.height.equalTo(320)
-            make.width.equalTo(343)
-            make.top.equalTo(subLabel.snp.bottom).offset(90)
-            make.centerX.equalToSuperview()
+        block.snp.makeConstraints{
+            $0.height.equalTo(240)
+            $0.width.equalTo(253)
+            $0.top.equalTo(subLabel.snp.bottom).offset(120)
+            $0.centerX.equalToSuperview()
         }
-        signupButton.snp.makeConstraints{ make in
-            make.height.equalTo(56)
-            make.width.equalTo(320)
-            make.top.equalTo(block.snp.bottom).offset(110)
-            make.centerX.equalToSuperview()
+        signupButton.snp.makeConstraints{
+            $0.height.equalTo(56)
+            $0.width.equalTo(320)
+            //$0.top.equalTo(block.snp.bottom).offset(135)
+            $0.bottom.equalToSuperview().offset(-80)
+            $0.centerX.equalToSuperview()
         }
     }
 }
