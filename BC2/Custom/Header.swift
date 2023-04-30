@@ -42,5 +42,4 @@ class Header: UIView {
         addSubview(userNameLabel)
         addSubview(helloLabel)
     }
-
 }

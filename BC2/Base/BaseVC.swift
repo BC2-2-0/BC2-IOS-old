@@ -23,14 +23,13 @@ class BaseVC: UIViewController {
         $0.loopMode = .loop
         $0.play()
     }
+    
     lazy var coinAction = LottieAnimationView(name: "coinAction").then {
-        //$0.backgroundColor = UIColor.black
         $0.contentMode = .scaleAspectFit
-        $0.loopMode = .loop
-        $0.play()
+        $0.loopMode = .playOnce
     }
     
-    @available(*, unavailable)
+    //@available(*, unavailable)
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -47,6 +46,5 @@ class BaseVC: UIViewController {
     func addView(){}
     func setLayout(){}
     func addTarget(){}
-    func viewWillAppear(){}
 }
 

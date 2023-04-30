@@ -12,13 +12,7 @@
 		076A4A8D29EA9C0500BD9C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8C29EA9C0500BD9C79 /* ViewController.swift */; };
 		076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9129EA9C0600BD9C79 /* Assets.xcassets */; };
 		076A4A9529EA9C0600BD9C79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */; };
-		076A4AA029EA9C0600BD9C79 /* BC2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A9F29EA9C0600BD9C79 /* BC2Tests.swift */; };
-		076A4AAA29EA9C0600BD9C79 /* BC2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AA929EA9C0600BD9C79 /* BC2UITests.swift */; };
-		076A4AAC29EA9C0600BD9C79 /* BC2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AAB29EA9C0600BD9C79 /* BC2UITestsLaunchTests.swift */; };
 		076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ABD29EA9C9F00BD9C79 /* BaseVC.swift */; };
-		076A4AC329EA9DCF00BD9C79 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 076A4AC229EA9DCF00BD9C79 /* SnapKit */; };
-		076A4AC629EA9DDD00BD9C79 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 076A4AC529EA9DDD00BD9C79 /* Then */; };
-		076A4AC929EA9DEF00BD9C79 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 076A4AC829EA9DEF00BD9C79 /* Lottie */; };
 		076A4ACB29EA9F4300BD9C79 /* block.json in Resources */ = {isa = PBXBuildFile; fileRef = 076A4ACA29EA9F4300BD9C79 /* block.json */; };
 		076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ACC29EA9FAD00BD9C79 /* StartViewController.swift */; };
 		076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ACE29EA9FC000BD9C79 /* MainViewController.swift */; };
@@ -28,6 +22,12 @@
 		076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD729EB37A800BD9C79 /* AmountLabel.swift */; };
 		076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD929EB37C900BD9C79 /* PaymentButton.swift */; };
 		076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */; };
+		07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7DFD529F500B900FE70D7 /* PopUpView.swift */; };
+		07B7DFD829F5026700FE70D7 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */; };
+		07B7DFE529F5335200FE70D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07B7DFE429F5335200FE70D7 /* GoogleService-Info.plist */; };
+		07B7E00E29FE4C4900FE70D7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 07B7E00D29FE4C4900FE70D7 /* SnapKit */; };
+		07B7E01129FE4C5500FE70D7 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 07B7E01029FE4C5500FE70D7 /* Then */; };
+		07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 07B7E01329FE4C6C00FE70D7 /* Lottie */; };
 		07BF6AD129EC459800986AF7 /* coin.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD029EC459800986AF7 /* coin.json */; };
 		07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD229ECBAC200986AF7 /* coinAction.json */; };
 /* End PBXBuildFile section */
@@ -58,10 +58,7 @@
 		076A4A9429EA9C0600BD9C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		076A4A9629EA9C0600BD9C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		076A4A9B29EA9C0600BD9C79 /* BC2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BC2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		076A4A9F29EA9C0600BD9C79 /* BC2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BC2Tests.swift; sourceTree = "<group>"; };
 		076A4AA529EA9C0600BD9C79 /* BC2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BC2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		076A4AA929EA9C0600BD9C79 /* BC2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BC2UITests.swift; sourceTree = "<group>"; };
-		076A4AAB29EA9C0600BD9C79 /* BC2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BC2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		076A4ABD29EA9C9F00BD9C79 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		076A4ACA29EA9F4300BD9C79 /* block.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = block.json; sourceTree = "<group>"; };
 		076A4ACC29EA9FAD00BD9C79 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +69,9 @@
 		076A4AD729EB37A800BD9C79 /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		076A4AD929EB37C900BD9C79 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 		076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiningViewController.swift; sourceTree = "<group>"; };
+		07B7DFD529F500B900FE70D7 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		07B7DFE429F5335200FE70D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07BF6AD029EC459800986AF7 /* coin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin.json; sourceTree = "<group>"; };
 		07BF6AD229ECBAC200986AF7 /* coinAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coinAction.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,9 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076A4AC329EA9DCF00BD9C79 /* SnapKit in Frameworks */,
-				076A4AC629EA9DDD00BD9C79 /* Then in Frameworks */,
-				076A4AC929EA9DEF00BD9C79 /* Lottie in Frameworks */,
+				07B7E00E29FE4C4900FE70D7 /* SnapKit in Frameworks */,
+				07B7E01129FE4C5500FE70D7 /* Then in Frameworks */,
+				07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				076A4A8729EA9C0500BD9C79 /* BC2 */,
-				076A4A9E29EA9C0600BD9C79 /* BC2Tests */,
-				076A4AA829EA9C0600BD9C79 /* BC2UITests */,
 				076A4A8629EA9C0500BD9C79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,25 +134,9 @@
 				076A4A9129EA9C0600BD9C79 /* Assets.xcassets */,
 				076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */,
 				076A4A9629EA9C0600BD9C79 /* Info.plist */,
+				07B7DFE429F5335200FE70D7 /* GoogleService-Info.plist */,
 			);
 			path = BC2;
-			sourceTree = "<group>";
-		};
-		076A4A9E29EA9C0600BD9C79 /* BC2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				076A4A9F29EA9C0600BD9C79 /* BC2Tests.swift */,
-			);
-			path = BC2Tests;
-			sourceTree = "<group>";
-		};
-		076A4AA829EA9C0600BD9C79 /* BC2UITests */ = {
-			isa = PBXGroup;
-			children = (
-				076A4AA929EA9C0600BD9C79 /* BC2UITests.swift */,
-				076A4AAB29EA9C0600BD9C79 /* BC2UITestsLaunchTests.swift */,
-			);
-			path = BC2UITests;
 			sourceTree = "<group>";
 		};
 		076A4AB829EA9C4900BD9C79 /* App */ = {
@@ -172,6 +154,7 @@
 				076A4ACC29EA9FAD00BD9C79 /* StartViewController.swift */,
 				076A4ACE29EA9FC000BD9C79 /* MainViewController.swift */,
 				076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */,
+				07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +185,7 @@
 				076A4AD529EB375E00BD9C79 /* BoxView.swift */,
 				076A4AD729EB37A800BD9C79 /* AmountLabel.swift */,
 				076A4AD929EB37C900BD9C79 /* PaymentButton.swift */,
+				07B7DFD529F500B900FE70D7 /* PopUpView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -223,9 +207,9 @@
 			);
 			name = BC2;
 			packageProductDependencies = (
-				076A4AC229EA9DCF00BD9C79 /* SnapKit */,
-				076A4AC529EA9DDD00BD9C79 /* Then */,
-				076A4AC829EA9DEF00BD9C79 /* Lottie */,
+				07B7E00D29FE4C4900FE70D7 /* SnapKit */,
+				07B7E01029FE4C5500FE70D7 /* Then */,
+				07B7E01329FE4C6C00FE70D7 /* Lottie */,
 			);
 			productName = BC2;
 			productReference = 076A4A8529EA9C0500BD9C79 /* BC2.app */;
@@ -300,9 +284,9 @@
 			);
 			mainGroup = 076A4A7C29EA9C0500BD9C79;
 			packageReferences = (
-				076A4AC129EA9DCF00BD9C79 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				076A4AC429EA9DDD00BD9C79 /* XCRemoteSwiftPackageReference "Then" */,
-				076A4AC729EA9DEF00BD9C79 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				07B7E00C29FE4C4900FE70D7 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				07B7E00F29FE4C5500FE70D7 /* XCRemoteSwiftPackageReference "Then" */,
+				07B7E01229FE4C6C00FE70D7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 076A4A8629EA9C0500BD9C79 /* Products */;
 			projectDirPath = "";
@@ -325,6 +309,7 @@
 				076A4ACB29EA9F4300BD9C79 /* block.json in Resources */,
 				07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */,
 				07BF6AD129EC459800986AF7 /* coin.json in Resources */,
+				07B7DFE529F5335200FE70D7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */,
+				07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */,
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,
@@ -357,6 +343,7 @@
 				076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */,
 				076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */,
 				076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */,
+				07B7DFD829F5026700FE70D7 /* PopUpViewController.swift in Sources */,
 				076A4AD429EB374300BD9C79 /* SubView.swift in Sources */,
 				076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */,
 				076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */,
@@ -368,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076A4AA029EA9C0600BD9C79 /* BC2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,8 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076A4AAC29EA9C0600BD9C79 /* BC2UITestsLaunchTests.swift in Sources */,
-				076A4AAA29EA9C0600BD9C79 /* BC2UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +678,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		076A4AC129EA9DCF00BD9C79 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		07B7E00C29FE4C4900FE70D7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -702,7 +686,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		076A4AC429EA9DDD00BD9C79 /* XCRemoteSwiftPackageReference "Then" */ = {
+		07B7E00F29FE4C5500FE70D7 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -710,9 +694,9 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		076A4AC729EA9DEF00BD9C79 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		07B7E01229FE4C6C00FE70D7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
@@ -721,19 +705,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		076A4AC229EA9DCF00BD9C79 /* SnapKit */ = {
+		07B7E00D29FE4C4900FE70D7 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 076A4AC129EA9DCF00BD9C79 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 07B7E00C29FE4C4900FE70D7 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		076A4AC529EA9DDD00BD9C79 /* Then */ = {
+		07B7E01029FE4C5500FE70D7 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 076A4AC429EA9DDD00BD9C79 /* XCRemoteSwiftPackageReference "Then" */;
+			package = 07B7E00F29FE4C5500FE70D7 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		076A4AC829EA9DEF00BD9C79 /* Lottie */ = {
+		07B7E01329FE4C6C00FE70D7 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 076A4AC729EA9DEF00BD9C79 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 07B7E01229FE4C6C00FE70D7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */

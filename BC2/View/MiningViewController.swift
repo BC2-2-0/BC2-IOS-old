@@ -9,6 +9,12 @@ import UIKit
 
 class MiningViewController: BaseVC {
     
+    var myMoney: Int = 0
+    
+    
+    var codeArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var arrString = ""
+    
     private let headerView = Header()
     
     private let sub = SubView().then {
@@ -22,11 +28,11 @@ class MiningViewController: BaseVC {
     private let infoButton = UIButton().then {
         $0.setImage(UIImage(systemName: "info.circle.fill"), for: .normal)
         $0.tintColor = UIColor(named: "Button2Color")
+        $0.addTarget(self, action: #selector(goInfo), for: .touchUpInside)
     }
     
-    private let miningCodeButton = PaymentButton().then {
+    var miningCodeButton = PaymentButton().then {
         $0.backgroundColor = .white
-        $0.setTitle("56221ed7995860546cf055584433e3e9", for: .normal)
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
@@ -42,11 +48,9 @@ class MiningViewController: BaseVC {
         $0.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
     }
     
-    override func addTarget() {
-        mainButton.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
-    }
-    
     override func addView() {
+        changeAmountLabel()
+        randomCode()
         view.addSubview(headerView)
         view.addSubview(block)
         view.addSubview(sub)
@@ -94,7 +98,7 @@ class MiningViewController: BaseVC {
         infoButton.snp.makeConstraints{
             $0.width.height.equalTo(30)
             $0.top.equalTo(boxInLabel.pointLabel.snp.top)
-            $0.leading.equalTo(boxInLabel.amountLabel.snp.trailing).offset(120)
+            $0.trailing.equalTo(box.boxView.snp.trailing).inset(20)
         }
         coin.snp.makeConstraints{
             $0.width.height.equalTo(200)
@@ -102,9 +106,9 @@ class MiningViewController: BaseVC {
             $0.centerX.equalToSuperview()
         }
         coinAction.snp.makeConstraints{
-            $0.width.equalTo(200)
-            $0.top.equalTo(coin.snp.top).offset(-30)
-            $0.bottom.equalTo(coin.snp.bottom).offset(27)
+            $0.width.equalTo(250)
+            $0.top.equalTo(coin.snp.top).offset(-70)
+            $0.bottom.equalTo(coin.snp.bottom).offset(150)
             $0.centerX.equalToSuperview()
         }
         miningCodeButton.snp.makeConstraints{
@@ -121,8 +125,59 @@ class MiningViewController: BaseVC {
         }
     }
     
+    func randomCode(){
+        DispatchQueue.global().async { [self] in
+            let temp = 15
+            var ranNum: Int
+            while true{
+                
+                arrString = ""
+                for _ in 0...temp {
+                    ranNum = Int.random(in: 0...24)
+                    codeArray[temp] = ranNum
+                    arrString += String(ranNum,radix:16)
+                }
+                print("\(arrString)")
+                
+                DispatchQueue.main.async {
+                    miningCodeButton.setTitle(arrString, for: .normal)
+                }
+                
+                if(arrString.contains("1") && arrString.contains("2") && arrString.contains("3") && arrString.contains("4") && arrString.contains("5")) {
+                    DispatchQueue.main.async {
+                        coinAction.play()
+                        addMoney()
+                    }
+                }
+                Thread.sleep(forTimeInterval: 1)
+            }
+        }
+    }
+    
+    func changeAmountLabel() {
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: myMoney)! + " 원"
+        boxInLabel.amountLabel.text = result
+    }
+    
+    func addMoney() {
+        myMoney += 100
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: myMoney)! + " 원"
+        boxInLabel.amountLabel.text = result
+    }
+    
     @objc func goToMain(){
         let nextVC = MainViewController()
+        nextVC.amount = myMoney
         self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
+    @objc func goInfo(){
+        let nextVC = PopUpViewController()
+        nextVC.modalPresentationStyle = .overCurrentContext
+        self.present(nextVC, animated: true, completion: nil)
     }
 }

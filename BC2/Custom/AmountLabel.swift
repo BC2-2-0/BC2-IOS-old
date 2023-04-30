@@ -29,8 +29,8 @@ class AmountLabel: UIView {
         $0.font = .boldSystemFont(ofSize: 16)
     }
     
-    let amountLabel = UILabel().then{
-        $0.text = "10,000 원"
+    var amountLabel = UILabel().then{
+        $0.text = " "
         $0.textColor = UIColor.black
         $0.font = .boldSystemFont(ofSize: 28)
     }

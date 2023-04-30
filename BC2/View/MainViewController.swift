@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: BaseVC {
     
+    var amount = 12000
+    
     private let headerView = Header()
     
     private let sub = SubView()
@@ -39,6 +41,7 @@ class MainViewController: BaseVC {
     }
     
     override func addView() {
+        changeAmountLabel()
         view.addSubview(headerView)
         view.addSubview(miniBlock)
         view.addSubview(sub)
@@ -110,6 +113,14 @@ class MainViewController: BaseVC {
     
     @objc func goToMining(){
         let nextVC = MiningViewController()
+        nextVC.myMoney = amount
         self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
+    func changeAmountLabel() {
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: amount)! + " 원"
+        boxInLabel.amountLabel.text = result
     }
 }
