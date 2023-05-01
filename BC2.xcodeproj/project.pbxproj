@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D4F2D2A29FFCE25003F0E19 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D4F2D2929FFCE25003F0E19 /* Color.xcassets */; };
 		3DD8B52229E26D2000FA7134 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8B52129E26D2000FA7134 /* AppDelegate.swift */; };
 		3DD8B52429E26D2000FA7134 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8B52329E26D2000FA7134 /* SceneDelegate.swift */; };
 		3DD8B52629E26D2000FA7134 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8B52529E26D2000FA7134 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D4F2D2929FFCE25003F0E19 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		3DD8B51E29E26D2000FA7134 /* BC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DD8B52129E26D2000FA7134 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DD8B52329E26D2000FA7134 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				3DD8B52F29E26D2100FA7134 /* Info.plist */,
 				3DD8B56029E6686B00FA7134 /* BC2TableViewCell.swift */,
 				3DD8B55329E4205600FA7134 /* MainLottie.json */,
+				3D4F2D2929FFCE25003F0E19 /* Color.xcassets */,
 			);
 			path = BC2;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			files = (
 				3DD8B52E29E26D2100FA7134 /* LaunchScreen.storyboard in Resources */,
 				3DD8B55429E4205600FA7134 /* MainLottie.json in Resources */,
+				3D4F2D2A29FFCE25003F0E19 /* Color.xcassets in Resources */,
 				3DD8B52B29E26D2100FA7134 /* Assets.xcassets in Resources */,
 				3DD8B54429E3974F00FA7134 /* Color.xcassets in Resources */,
 			);
