@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 class StartViewController: BaseVC{
     
@@ -23,27 +26,41 @@ class StartViewController: BaseVC{
         $0.font = .systemFont(ofSize: 15)
     }
     
-    private let signupButton = UIButton().then{
+    //    private let googleSignupButton = UIButton().then{
+    //        //$0.style = .wide
+    //        $0.layer.cornerRadius = 28
+    //        $0.setTitle("Sign up with Google", for: .normal)
+    //        $0.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
+    //        $0.backgroundColor = UIColor(named: "SignUpButtonColor")
+    //        $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
+    //        $0.layer.shadowOffset = CGSize(width: 1, height: 4)
+    //        $0.layer.shadowOpacity = 1
+    //        $0.layer.shadowRadius = 6
+    //
+    //        $0.setImage(UIImage(named: "GoogleSignup"), for: .normal)
+    //        $0.imageEdgeInsets = .init(top: 12, left: 42, bottom: 12, right: 210)
+    //        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 35)
+    //        $0.titleEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -50)
+    //    }
+    
+    private let googleSignupButton = GIDSignInButton().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 28
-        $0.setTitle("Sign up with Google", for: .normal)
-        $0.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
         $0.backgroundColor = UIColor(named: "SignUpButtonColor")
         $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
         $0.layer.shadowOffset = CGSize(width: 1, height: 4)
         $0.layer.shadowOpacity = 1
         $0.layer.shadowRadius = 6
-
-        $0.setImage(UIImage(named: "GoogleSignup"), for: .normal)
-        $0.imageEdgeInsets = .init(top: 12, left: 42, bottom: 12, right: 210)
-        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 35)
-        $0.titleEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -50)
+        $0.style = .wide
+        
+        $0.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
     }
     
     override func addView() {
         view.addSubview(mainLabel)
         view.addSubview(subLabel)
         view.addSubview(block)
-        view.addSubview(signupButton)
+        view.addSubview(googleSignupButton)
     }
     
     override func setLayout(){
@@ -65,12 +82,46 @@ class StartViewController: BaseVC{
             $0.top.equalTo(subLabel.snp.bottom).offset(120)
             $0.centerX.equalToSuperview()
         }
-        signupButton.snp.makeConstraints{
+        googleSignupButton.snp.makeConstraints{
             $0.height.equalTo(56)
             $0.width.equalTo(320)
-            //$0.top.equalTo(block.snp.bottom).offset(135)
-            $0.bottom.equalToSuperview().offset(-80)
+            $0.bottom.equalToSuperview().offset(-90)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func signinWithGoogle() {
+        googleSignupButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        googleSignupButton.addAction(.init(handler: { [weak self] _ in
+            guard let self = self else { return }
+            
+            GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+                if let error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                guard let user = result?.user,
+                    let idToken = user.idToken?.tokenString
+                else {
+                    return
+                }
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+                
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    
+                    // Firebase에 로그인한 후에 필요한 작업 수행
+                    let nextVC = MainViewController()
+                    self.navigationController?.pushViewController(nextVC, animated: false)
+                }
+            }
+            
+        }), for: .touchUpInside)
+        
     }
 }
