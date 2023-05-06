@@ -12,6 +12,9 @@ import GoogleSignIn
 
 class StartViewController: BaseVC{
     
+    var userName: String = " "
+    var userEmail: String = " "
+    
     private let googleSignupImage = UIImage(named: "GoogleSignup")
     
     private let mainLabel = UILabel().then{
@@ -116,7 +119,15 @@ class StartViewController: BaseVC{
                     }
                     
                     // Firebase에 로그인한 후에 필요한 작업 수행
+                    if let user = Auth.auth().currentUser {
+                        let email = user.email
+                        let name = user.displayName
+                        self.userEmail = email ?? "Unknown"
+                        self.userName = name ?? "Unknown"
+                    }
+                    
                     let nextVC = MainViewController()
+                    nextVC.userName = self.userName
                     self.navigationController?.pushViewController(nextVC, animated: false)
                 }
             }

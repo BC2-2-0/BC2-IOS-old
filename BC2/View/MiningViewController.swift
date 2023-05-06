@@ -9,8 +9,9 @@ import UIKit
 
 class MiningViewController: BaseVC {
     
-    var myMoney: Int = 0
+    var userName: String = " "
     
+    var myMoney: Int = 0
     
     var codeArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     var arrString = ""
@@ -49,6 +50,7 @@ class MiningViewController: BaseVC {
     }
     
     override func addView() {
+        changeNameLabel()
         changeAmountLabel()
         randomCode()
         view.addSubview(headerView)
@@ -154,6 +156,21 @@ class MiningViewController: BaseVC {
         }
     }
     
+    func changeNameLabel() {
+        let result: String = userName
+        headerView.userNameLabel.text = result + "님"
+        let font = UIFont.boldSystemFont(ofSize: 28)
+        let attributedText = NSMutableAttributedString(string: headerView.userNameLabel.text!)
+        
+        if let range = headerView.userNameLabel.text?.range(of: result) {
+            let nsRange = NSRange(range, in: headerView.userNameLabel.text!)
+            attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: nsRange)
+            attributedText.addAttribute(.font, value: font, range: nsRange)
+        }
+        
+        headerView.userNameLabel.attributedText = attributedText
+    }
+    
     func changeAmountLabel() {
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
@@ -172,6 +189,7 @@ class MiningViewController: BaseVC {
     @objc func goToMain(){
         let nextVC = MainViewController()
         nextVC.amount = myMoney
+        nextVC.userName = self.userName
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

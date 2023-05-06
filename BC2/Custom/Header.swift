@@ -22,14 +22,10 @@ class Header: UIView {
     }
     
     let userNameLabel = UILabel().then{
-        $0.text = "신아인님"
+        $0.text = " 님"
         $0.textColor = UIColor(named: "SubTextColor")
         $0.font = .systemFont(ofSize: 28)
         let font = UIFont.boldSystemFont(ofSize: 28)
-        let attributedStr = NSMutableAttributedString(string: $0.text!)
-        attributedStr.addAttribute(.foregroundColor, value: UIColor.black, range: ($0.text! as NSString).range(of: "신아인"))
-        attributedStr.addAttribute(.font, value: font, range: ($0.text! as NSString).range(of: "신아인"))
-        $0.attributedText = attributedStr
     }
     
     let helloLabel = UILabel().then{

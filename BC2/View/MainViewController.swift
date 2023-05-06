@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: BaseVC {
     
+    var userName: String = " "
+    
     var amount = 12000
     
     private let headerView = Header()
@@ -41,6 +43,7 @@ class MainViewController: BaseVC {
     }
     
     override func addView() {
+        changeNameLabel()
         changeAmountLabel()
         view.addSubview(headerView)
         view.addSubview(miniBlock)
@@ -114,6 +117,7 @@ class MainViewController: BaseVC {
     @objc func goToMining(){
         let nextVC = MiningViewController()
         nextVC.myMoney = amount
+        nextVC.userName = self.userName
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
@@ -122,5 +126,20 @@ class MainViewController: BaseVC {
         moneyFormatter.numberStyle = .decimal
         let result: String = moneyFormatter.string(for: amount)! + " 원"
         boxInLabel.amountLabel.text = result
+    }
+    
+    func changeNameLabel() {
+        let result: String = userName
+        headerView.userNameLabel.text = result + "님"
+        let font = UIFont.boldSystemFont(ofSize: 28)
+        let attributedText = NSMutableAttributedString(string: headerView.userNameLabel.text!)
+        
+        if let range = headerView.userNameLabel.text?.range(of: result) {
+            let nsRange = NSRange(range, in: headerView.userNameLabel.text!)
+            attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: nsRange)
+            attributedText.addAttribute(.font, value: font, range: nsRange)
+        }
+        
+        headerView.userNameLabel.attributedText = attributedText
     }
 }
