@@ -36,6 +36,7 @@ class BaseVC: UIViewController {
         addView()
         setLayout()
         addTarget()
+        delegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,5 +47,6 @@ class BaseVC: UIViewController {
     func addView(){}
     func setLayout(){}
     func addTarget(){}
+    func delegate(){}
 }
 
