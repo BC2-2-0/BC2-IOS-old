@@ -10,6 +10,7 @@ import UIKit
 class MiningViewController: BaseVC {
     
     var userName: String = " "
+    var userEmail: String = " "
     
     var myMoney: Int = 0
     
@@ -139,7 +140,7 @@ class MiningViewController: BaseVC {
                     codeArray[temp] = ranNum
                     arrString += String(ranNum,radix:16)
                 }
-                print("\(arrString)")
+//                print("\(arrString)")
                 
                 DispatchQueue.main.async {
                     miningCodeButton.setTitle(arrString, for: .normal)
@@ -149,6 +150,7 @@ class MiningViewController: BaseVC {
                     DispatchQueue.main.async {
                         coinAction.play()
                         addMoney()
+                        charge(email: self.userEmail, balance: self.myMoney, charged_money: 100)
                     }
                 }
                 Thread.sleep(forTimeInterval: 1)
@@ -190,6 +192,7 @@ class MiningViewController: BaseVC {
         let nextVC = MainViewController()
         nextVC.amount = myMoney
         nextVC.userName = self.userName
+        //nextVC.userEmail = self.userEmail
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

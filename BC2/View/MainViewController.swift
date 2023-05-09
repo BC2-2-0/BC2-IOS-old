@@ -10,8 +10,9 @@ import UIKit
 class MainViewController: BaseVC {
     
     var userName: String = " "
+    var userEmail: String = " "
     
-    var amount = 12000
+    var amount = 0
     
     private let headerView = Header()
     
@@ -118,6 +119,7 @@ class MainViewController: BaseVC {
         let nextVC = MiningViewController()
         nextVC.myMoney = amount
         nextVC.userName = self.userName
+        nextVC.userEmail = self.userEmail
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

@@ -29,12 +29,15 @@
 		07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 07B7E01329FE4C6C00FE70D7 /* Lottie */; };
 		07BF6AD129EC459800986AF7 /* coin.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD029EC459800986AF7 /* coin.json */; };
 		07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF6AD229ECBAC200986AF7 /* coinAction.json */; };
-		07D1EAA82A02AAAC007C67AF /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAA72A02AAAC007C67AF /* ReaderView.swift */; };
 		07D1EAB02A04B3D7007C67AF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 07D1EAAF2A04B3D7007C67AF /* GoogleSignIn */; };
 		07D1EAB22A04B3D7007C67AF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 07D1EAB12A04B3D7007C67AF /* GoogleSignInSwift */; };
 		07D1EABB2A04E459007C67AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07D1EABA2A04E459007C67AF /* GoogleService-Info.plist */; };
 		07D1EABE2A050DC3007C67AF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 07D1EABD2A050DC3007C67AF /* FirebaseAnalytics */; };
 		07D1EAC02A050DC3007C67AF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 07D1EABF2A050DC3007C67AF /* FirebaseAuth */; };
+		07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAC22A0669E0007C67AF /* APIConstants.swift */; };
+		07D1EAC52A066D93007C67AF /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAC42A066D93007C67AF /* NetworkResult.swift */; };
+		07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAC92A066EA8007C67AF /* SendModel.swift */; };
+		07D1EAD52A067D6F007C67AF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAD42A067D6F007C67AF /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +81,11 @@
 		07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		07BF6AD029EC459800986AF7 /* coin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin.json; sourceTree = "<group>"; };
 		07BF6AD229ECBAC200986AF7 /* coinAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coinAction.json; sourceTree = "<group>"; };
-		07D1EAA72A02AAAC007C67AF /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
 		07D1EABA2A04E459007C67AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		07D1EAC22A0669E0007C67AF /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		07D1EAC42A066D93007C67AF /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		07D1EAC92A066EA8007C67AF /* SendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendModel.swift; sourceTree = "<group>"; };
+		07D1EAD42A067D6F007C67AF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +123,6 @@
 		076A4A7C29EA9C0500BD9C79 = {
 			isa = PBXGroup;
 			children = (
-				07D1EABA2A04E459007C67AF /* GoogleService-Info.plist */,
 				076A4A8729EA9C0500BD9C79 /* BC2 */,
 				076A4A8629EA9C0500BD9C79 /* Products */,
 			);
@@ -136,6 +141,8 @@
 		076A4A8729EA9C0500BD9C79 /* BC2 */ = {
 			isa = PBXGroup;
 			children = (
+				07D1EAC62A066E55007C67AF /* Model */,
+				07D1EAC12A0669CA007C67AF /* Network */,
 				076A4AD029EB371200BD9C79 /* Custom */,
 				076A4ABB29EA9C8700BD9C79 /* Base */,
 				076A4ABA29EA9C6B00BD9C79 /* Lottie */,
@@ -145,6 +152,7 @@
 				076A4A9129EA9C0600BD9C79 /* Assets.xcassets */,
 				076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */,
 				076A4A9629EA9C0600BD9C79 /* Info.plist */,
+				07D1EABA2A04E459007C67AF /* GoogleService-Info.plist */,
 			);
 			path = BC2;
 			sourceTree = "<group>";
@@ -165,7 +173,6 @@
 				076A4ACE29EA9FC000BD9C79 /* MainViewController.swift */,
 				076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */,
 				07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */,
-				07D1EAA72A02AAAC007C67AF /* ReaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +206,24 @@
 				07B7DFD529F500B900FE70D7 /* PopUpView.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		07D1EAC12A0669CA007C67AF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				07D1EAC22A0669E0007C67AF /* APIConstants.swift */,
+				07D1EAC42A066D93007C67AF /* NetworkResult.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		07D1EAC62A066E55007C67AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07D1EAC92A066EA8007C67AF /* SendModel.swift */,
+				07D1EAD42A067D6F007C67AF /* Service.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,9 +377,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */,
-				07D1EAA82A02AAAC007C67AF /* ReaderView.swift in Sources */,
 				07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */,
+				07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */,
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
+				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,
 				076A4A8D29EA9C0500BD9C79 /* ViewController.swift in Sources */,
@@ -365,6 +391,8 @@
 				076A4AD429EB374300BD9C79 /* SubView.swift in Sources */,
 				076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */,
 				076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */,
+				07D1EAD52A067D6F007C67AF /* Service.swift in Sources */,
+				07D1EAC52A066D93007C67AF /* NetworkResult.swift in Sources */,
 				076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
