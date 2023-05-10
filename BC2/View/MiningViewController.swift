@@ -127,7 +127,9 @@ class MiningViewController: BaseVC {
             $0.leading.equalToSuperview().offset(53)
         }
     }
-    
+    override func configNavigation() {
+        self.navigationItem.hidesBackButton = true
+    }
     func randomCode(){
         DispatchQueue.global().async { [self] in
             let temp = 15

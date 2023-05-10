@@ -13,7 +13,7 @@ final class PaymentListMainLabel: UILabel {
         $0.font = UIFont.boldSystemFont(ofSize: 24.0)
         $0.text = "Block Chain\n거래 내역"
         $0.numberOfLines = 2
-        $0.textColor = .mainTextColor
+        $0.textColor = UIColor(named: "MainTextColor1")
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +29,7 @@ final class PaymentListMainLabel: UILabel {
     }
     func attribute(){
         let attributedStr = NSMutableAttributedString(string: FirstLabel.text!)
-        attributedStr.addAttribute(.foregroundColor, value: UIColor.subTextColor, range: (FirstLabel.text! as NSString).range(of: "거래 내역"))
+        attributedStr.addAttribute(.foregroundColor, value: UIColor(named: "MainTextColor2"), range: (FirstLabel.text! as NSString).range(of: "거래 내역"))
         FirstLabel.attributedText = attributedStr
     }
     func addView(){
