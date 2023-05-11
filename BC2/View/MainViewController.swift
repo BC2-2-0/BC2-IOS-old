@@ -30,6 +30,7 @@ class MainViewController: BaseVC {
         $0.tintColor = UIColor(named: "MainTextColor")
         $0.contentHorizontalAlignment = .leading
         $0.semanticContentAttribute = .forceRightToLeft
+        $0.addTarget(self, action: #selector(goToListViewController), for: .touchUpInside)
     }
     
     private let miniBlock = BaseVC().block
@@ -114,7 +115,17 @@ class MainViewController: BaseVC {
             $0.leading.equalToSuperview().offset(53)
         }
     }
-    
+    override func configNavigation() {
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backButton.tintColor = .black
+        self.navigationItem.backBarButtonItem = backButton
+        self.view.backgroundColor = .white
+        self.navigationItem.hidesBackButton = true
+    }
+    @objc func goToListViewController(){
+        let nextVC = ListViewController()
+        self.navigationController?.pushViewController(nextVC, animated: false)
+    }
     @objc func goToMining(){
         let nextVC = MiningViewController()
         nextVC.myMoney = amount

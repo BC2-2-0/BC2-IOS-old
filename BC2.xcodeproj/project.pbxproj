@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */; };
 		076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */; };
-		076A4A8D29EA9C0500BD9C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8C29EA9C0500BD9C79 /* ViewController.swift */; };
 		076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9129EA9C0600BD9C79 /* Assets.xcassets */; };
 		076A4A9529EA9C0600BD9C79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */; };
 		076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ABD29EA9C9F00BD9C79 /* BaseVC.swift */; };
@@ -38,6 +37,10 @@
 		07D1EAC52A066D93007C67AF /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAC42A066D93007C67AF /* NetworkResult.swift */; };
 		07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAC92A066EA8007C67AF /* SendModel.swift */; };
 		07D1EAD52A067D6F007C67AF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1EAD42A067D6F007C67AF /* Service.swift */; };
+		3D06DD652A0A8EAC00240BBA /* PaymentListMainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */; };
+		3D06DD6C2A0BE01700240BBA /* BC2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */; };
+		3D06DD6E2A0BE02F00240BBA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */; };
+		3D06DD702A0BE0C600240BBA /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D06DD6F2A0BE0C600240BBA /* Color.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +64,6 @@
 		076A4A8529EA9C0500BD9C79 /* BC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		076A4A8C29EA9C0500BD9C79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		076A4A9129EA9C0600BD9C79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		076A4A9429EA9C0600BD9C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		076A4A9629EA9C0600BD9C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +88,10 @@
 		07D1EAC42A066D93007C67AF /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		07D1EAC92A066EA8007C67AF /* SendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendModel.swift; sourceTree = "<group>"; };
 		07D1EAD42A067D6F007C67AF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentListMainLabel.swift; sourceTree = "<group>"; };
+		3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BC2TableViewCell.swift; sourceTree = "<group>"; };
+		3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		3D06DD6F2A0BE0C600240BBA /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Color.xcassets; path = ../../../../oooo/BC2/resources/Color.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 		076A4A8729EA9C0500BD9C79 /* BC2 */ = {
 			isa = PBXGroup;
 			children = (
+				3D06DD6A2A0BE00600240BBA /* Cell */,
 				07D1EAC62A066E55007C67AF /* Model */,
 				07D1EAC12A0669CA007C67AF /* Network */,
 				076A4AD029EB371200BD9C79 /* Custom */,
@@ -148,9 +155,7 @@
 				076A4ABA29EA9C6B00BD9C79 /* Lottie */,
 				076A4AB929EA9C5D00BD9C79 /* View */,
 				076A4AB829EA9C4900BD9C79 /* App */,
-				076A4A8C29EA9C0500BD9C79 /* ViewController.swift */,
-				076A4A9129EA9C0600BD9C79 /* Assets.xcassets */,
-				076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */,
+				3D06DD5E2A0A8BD000240BBA /* Resources */,
 				076A4A9629EA9C0600BD9C79 /* Info.plist */,
 				07D1EABA2A04E459007C67AF /* GoogleService-Info.plist */,
 			);
@@ -173,6 +178,7 @@
 				076A4ACE29EA9FC000BD9C79 /* MainViewController.swift */,
 				076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */,
 				07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */,
+				3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 				076A4AD729EB37A800BD9C79 /* AmountLabel.swift */,
 				076A4AD929EB37C900BD9C79 /* PaymentButton.swift */,
 				07B7DFD529F500B900FE70D7 /* PopUpView.swift */,
+				3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -224,6 +231,24 @@
 				07D1EAD42A067D6F007C67AF /* Service.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3D06DD5E2A0A8BD000240BBA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				076A4A9329EA9C0600BD9C79 /* LaunchScreen.storyboard */,
+				076A4A9129EA9C0600BD9C79 /* Assets.xcassets */,
+				3D06DD6F2A0BE0C600240BBA /* Color.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3D06DD6A2A0BE00600240BBA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +375,7 @@
 				076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */,
 				076A4ACB29EA9F4300BD9C79 /* block.json in Resources */,
 				07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */,
+				3D06DD702A0BE0C600240BBA /* Color.xcassets in Resources */,
 				07D1EABB2A04E459007C67AF /* GoogleService-Info.plist in Resources */,
 				07BF6AD129EC459800986AF7 /* coin.json in Resources */,
 			);
@@ -383,7 +409,7 @@
 				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,
-				076A4A8D29EA9C0500BD9C79 /* ViewController.swift in Sources */,
+				3D06DD652A0A8EAC00240BBA /* PaymentListMainLabel.swift in Sources */,
 				076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */,
 				076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */,
 				076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */,
@@ -393,7 +419,9 @@
 				076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */,
 				07D1EAD52A067D6F007C67AF /* Service.swift in Sources */,
 				07D1EAC52A066D93007C67AF /* NetworkResult.swift in Sources */,
+				3D06DD6E2A0BE02F00240BBA /* ListViewController.swift in Sources */,
 				076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */,
+				3D06DD6C2A0BE01700240BBA /* BC2TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,13 +587,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S4K8SAN9WG;
+				DEVELOPMENT_TEAM = 6WZYJKR3V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,13 +615,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S4K8SAN9WG;
+				DEVELOPMENT_TEAM = 6WZYJKR3V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
