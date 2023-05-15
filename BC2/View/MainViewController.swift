@@ -41,7 +41,50 @@ class MainViewController: BaseVC {
         $0.setTitle("코인 채굴", for: .normal)
         $0.backgroundColor = UIColor(named: "Button2Color")
         $0.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
+        $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
+    }
+    
+    private let popUpView = UIView().then {
+        $0.backgroundColor = UIColor.white
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
+    }
+    
+    private let backgroundView = UIView().then {
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    }
+    
+    private let coinRechargeLabel = UILabel().then {
+        $0.text = "코인 충전"
+        $0.font = UIFont.boldSystemFont(ofSize: 20.0)
+        $0.isHidden = true
+    }
+    
+    private let coinImageView = UIImageView().then {
+        $0.image = UIImage(named: "CoinImage")
+    }
+    
+    private let rechargeImageView = UIImageView().then {
+        $0.image = UIImage(named: "CoinImage")
+    }
+    
+    private let goMiningButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "PopUpViewButtonBG")
+        $0.layer.cornerRadius = 8
+        $0.setTitle("\n\n채굴하기", for: .normal)
+        $0.titleLabel?.numberOfLines = 3
+        $0.setTitleColor(UIColor.black, for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         $0.addTarget(self, action: #selector(goToMining), for: .touchUpInside)
+    }
+    
+    private let goRechargeButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "PopUpViewButtonBG")
+        $0.layer.cornerRadius = 8
+        $0.setTitle("\n\n충전하기", for: .normal)
+        $0.titleLabel?.numberOfLines = 3
+        $0.setTitleColor(UIColor.black, for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
     }
     
     override func addView() {
@@ -122,16 +165,77 @@ class MainViewController: BaseVC {
         self.view.backgroundColor = .white
         self.navigationItem.hidesBackButton = true
     }
-    @objc func goToListViewController(){
-        let nextVC = ListViewController()
-        self.navigationController?.pushViewController(nextVC, animated: false)
+    
+    func hidePopup() {
+        self.goMiningButton.isHidden = true
+        self.goRechargeButton.isHidden = true
+        self.coinImageView.isHidden = true
+        self.rechargeImageView.isHidden = true
+        UIView.animate(withDuration: 0.1, animations: {
+            self.popUpView.alpha = 0
+            self.backgroundView.alpha = 0
+            self.coinRechargeLabel.alpha = 0
+            self.coinImageView.alpha = 0
+            self.rechargeImageView.alpha = 0
+//            self.goMiningButton.alpha = 0
+//            self.goRechargeButton.alpha = 0
+        }) { _ in
+            self.popUpView.removeFromSuperview()
+            self.backgroundView.removeFromSuperview()
+        }
     }
-    @objc func goToMining(){
-        let nextVC = MiningViewController()
-        nextVC.myMoney = amount
-        nextVC.userName = self.userName
-        nextVC.userEmail = self.userEmail
-        self.navigationController?.pushViewController(nextVC, animated: false)
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let point = touch.location(in: self.view)
+            if !popUpView.frame.contains(point) {
+                hidePopup()
+            }
+        }
+    }
+    func popUpViewAddView(){
+        self.view.addSubview(backgroundView)
+        self.view.addSubview(popUpView)
+        self.view.addSubview(coinRechargeLabel)
+        self.view.addSubview(goMiningButton)
+        self.view.addSubview(goRechargeButton)
+        self.view.addSubview(coinImageView)
+        self.view.addSubview(rechargeImageView)
+    }
+    func popUpViewLayout() {
+        popUpView.snp.makeConstraints{
+            $0.bottom.equalTo(view.safeAreaInsets).inset(0)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(172)
+        }
+        coinRechargeLabel.snp.makeConstraints{
+            $0.bottom.equalTo(view.safeAreaInsets).inset(124)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        goMiningButton.snp.makeConstraints{
+            $0.width.equalTo(153)
+            $0.height.equalTo(80)
+            $0.bottom.equalTo(view.safeAreaInsets).inset(24)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        goRechargeButton.snp.makeConstraints{
+            $0.width.equalTo(153)
+            $0.height.equalTo(80)
+            $0.bottom.equalTo(view.safeAreaInsets).inset(24)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        coinImageView.snp.makeConstraints{
+            $0.width.equalTo(24)
+            $0.height.equalTo(24)
+            $0.leading.equalTo(goMiningButton.snp.leading).inset(65)
+            $0.top.equalTo(goMiningButton.snp.top).inset(16)
+        }
+        rechargeImageView.snp.makeConstraints{
+            $0.width.equalTo(24)
+            $0.height.equalTo(24)
+            $0.leading.equalTo(goRechargeButton.snp.leading).inset(65)
+            $0.top.equalTo(goRechargeButton.snp.top).inset(16)
+        }
     }
     
     func changeAmountLabel() {
@@ -155,4 +259,47 @@ class MainViewController: BaseVC {
         
         headerView.userNameLabel.attributedText = attributedText
     }
+}
+extension MainViewController {
+    
+    @objc func goToListViewController(){
+        let nextVC = ListViewController()
+        self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
+    @objc func goToMining(){
+        let nextVC = MiningViewController()
+        nextVC.myMoney = amount
+        nextVC.userName = self.userName
+        nextVC.userEmail = self.userEmail
+        self.navigationController?.pushViewController(nextVC, animated: false)
+    }
+    
+    @objc func showPopup() {
+        popUpViewAddView()
+        popUpViewLayout()
+        self.coinRechargeLabel.isHidden = false
+        self.goMiningButton.isHidden = false
+        self.goRechargeButton.isHidden = false
+        self.coinImageView.isHidden = false
+        self.rechargeImageView.isHidden = false
+        self.backgroundView.frame = view.bounds
+        popUpView.alpha = 0
+        backgroundView.alpha = 0
+        coinRechargeLabel.alpha = 0
+        goMiningButton.alpha = 0
+        goRechargeButton.alpha = 0
+        coinImageView.alpha = 0
+        rechargeImageView.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            self.popUpView.alpha = 1
+            self.backgroundView.alpha = 1
+            self.coinRechargeLabel.alpha = 1
+            self.goMiningButton.alpha = 1
+            self.goRechargeButton.alpha = 1
+            self.coinImageView.alpha = 1
+            self.rechargeImageView.alpha = 1
+        }
+    }
+    
 }
