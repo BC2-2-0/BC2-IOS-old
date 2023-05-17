@@ -6,7 +6,16 @@
 //
 
 import UIKit
+import EventSource
 import Firebase
+
+struct MoneyData: Decodable {
+    let balance: String
+}
+
+var responseBalance: Int = 0
+var check: Int = 0
+let myData = MyData.shared
 
 class MainViewController: BaseVC {
     
@@ -21,6 +30,14 @@ class MainViewController: BaseVC {
             UserDefaults.standard.set(newValue, forKey: "Amount")
         }
     }
+    
+    var balances: String = " "
+    
+    var changeAmount: String = " "
+
+    //var amount = 0
+    
+    var moneyCount: Int = 0
     
     private let headerView = Header()
     
@@ -97,10 +114,15 @@ class MainViewController: BaseVC {
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         $0.addTarget(self, action: #selector(goToCharge), for: .touchUpInside)
     }
-    
+    private var eventSource: EventSource?
+
     override func addView() {
         changeNameLabel()
         changeAmountLabel()
+        let myData = MyData.shared
+        myData.moneyValue = String(responseBalance)
+        responseBalance = Int(myData.moneyValue)!
+        serverSendEvent()
         view.addSubview(headerView)
         view.addSubview(miniBlock)
         view.addSubview(sub)
@@ -186,10 +208,8 @@ class MainViewController: BaseVC {
             self.popUpView.alpha = 0
             self.backgroundView.alpha = 0
             self.coinRechargeLabel.alpha = 0
-            self.coinImageView.alpha = 0
-            self.rechargeImageView.alpha = 0
-            //            self.goMiningButton.alpha = 0
-            //            self.goRechargeButton.alpha = 0
+            //self.coinImageView.alpha = 0
+            //self.rechargeImageView.alpha = 0
         }) { _ in
             self.popUpView.removeFromSuperview()
             self.backgroundView.removeFromSuperview()
@@ -250,10 +270,7 @@ class MainViewController: BaseVC {
     }
     
     func changeAmountLabel() {
-        let moneyFormatter: NumberFormatter = NumberFormatter()
-        moneyFormatter.numberStyle = .decimal
-        let result: String = moneyFormatter.string(for: amount)! + " 원"
-        boxInLabel.amountLabel.text = result
+        boxInLabel.amountLabel.text = changeAmount
     }
     
     func changeNameLabel() {
@@ -271,10 +288,59 @@ class MainViewController: BaseVC {
         headerView.userNameLabel.attributedText = attributedText
     }
     
-    
+    func serverSendEvent(){
+        print("ASD")
+        
+        let eventSourceURL = "http://13.125.77.165:3000/receive"
+        
+        let eventSource = EventSource(request: .init(url: URL(string: eventSourceURL)!))
+        self.eventSource = eventSource
+        print(myData.moneyValue)
+        eventSource.connect()
+        Task {
+            for await event in eventSource.events {
+                switch event {
+                case .open:
+                    print("성공")
+                    print("Connection was opened. main")
+                case .error(let error):
+                    print("에러")
+                    print("Received an error:", error.localizedDescription)
+                case .message(let message):
+                    do {
+                        let response = try JSONDecoder().decode(MoneyData.self, from: message.data!.data(using: .utf8)!)
+                        if check == 0 {
+                            myData.moneyValue = String(responseBalance)
+                            responseBalance = Int(myData.moneyValue)!
+                            print(myData.moneyValue)
+                            responseBalance = Int(response.balance)! - 100
+                            let result: String = String(responseBalance) + " 원"
+                            boxInLabel.amountLabel.text = result
+                            check = 1
+                        }
+                        else {
+                            print(myData.moneyValue)
+                            myData.moneyValue = String(responseBalance)
+                            responseBalance = Int(myData.moneyValue)!
+                            responseBalance = responseBalance + 10
+                            let result: String = String(responseBalance) + " 원"
+                            boxInLabel.amountLabel.text = result
+                            myData.moneyValue = String(Int(myData.moneyValue)! + 10)
+                            print(myData.moneyValue)
+                        }
+                    } catch {
+                        
+                    }
+                    print("메시지")
+                    print("Received a message", message.data ?? "데이터 없음")
+                case .closed:
+                    print("Connection was closed.")
+                }
+            }
+        }
+    }
 }
 extension MainViewController {
-    
     
     @objc func goToListViewController(){
         let nextVC = ListViewController()
@@ -295,6 +361,16 @@ extension MainViewController {
         nextVC.userName = self.userName
         nextVC.userEmail = self.userEmail
         self.navigationController?.pushViewController(nextVC, animated: false)
+        self.coinRechargeLabel.isHidden = true
+        self.goMiningButton.isHidden = true
+        self.goRechargeButton.isHidden = true
+        self.coinImageView.isHidden = true
+        self.rechargeImageView.isHidden = true
+        self.backgroundView.isHidden = true
+        self.popUpView.isHidden = true
+//        Task {
+//            await eventSource?.close()
+//        }
     }
     
     @objc func goToCharge(){
@@ -310,6 +386,8 @@ extension MainViewController {
         self.goRechargeButton.isHidden = false
         self.coinImageView.isHidden = false
         self.rechargeImageView.isHidden = false
+        self.backgroundView.isHidden = false
+        self.popUpView.isHidden = false
         self.backgroundView.frame = view.bounds
         popUpView.alpha = 0
         backgroundView.alpha = 0

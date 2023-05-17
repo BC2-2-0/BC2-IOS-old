@@ -29,23 +29,6 @@ class StartViewController: BaseVC{
         $0.font = .systemFont(ofSize: 15)
     }
     
-    //    private let googleSignupButton = UIButton().then{
-    //        //$0.style = .wide
-    //        $0.layer.cornerRadius = 28
-    //        $0.setTitle("Sign up with Google", for: .normal)
-    //        $0.setTitleColor(UIColor(named: "MainTextColor"), for: .normal)
-    //        $0.backgroundColor = UIColor(named: "SignUpButtonColor")
-    //        $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
-    //        $0.layer.shadowOffset = CGSize(width: 1, height: 4)
-    //        $0.layer.shadowOpacity = 1
-    //        $0.layer.shadowRadius = 6
-    //
-    //        $0.setImage(UIImage(named: "GoogleSignup"), for: .normal)
-    //        $0.imageEdgeInsets = .init(top: 12, left: 42, bottom: 12, right: 210)
-    //        $0.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 35)
-    //        $0.titleEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: -50)
-    //    }
-    
     private let googleSignupButton = GIDSignInButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
