@@ -40,6 +40,8 @@
 		3D06DD652A0A8EAC00240BBA /* PaymentListMainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */; };
 		3D06DD6C2A0BE01700240BBA /* BC2TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */; };
 		3D06DD6E2A0BE02F00240BBA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */; };
+		3D06DDB42A13756100240BBA /* EventSource in Frameworks */ = {isa = PBXBuildFile; productRef = 3D06DDB32A13756100240BBA /* EventSource */; };
+		3D06DDB62A14D25400240BBA /* MyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DDB52A14D25400240BBA /* MyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,7 @@
 		3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentListMainLabel.swift; sourceTree = "<group>"; };
 		3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BC2TableViewCell.swift; sourceTree = "<group>"; };
 		3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		3D06DDB52A14D25400240BBA /* MyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 				07B7E01129FE4C5500FE70D7 /* Then in Frameworks */,
 				07D1EAB22A04B3D7007C67AF /* GoogleSignInSwift in Frameworks */,
 				07D1EAC02A050DC3007C67AF /* FirebaseAuth in Frameworks */,
+				3D06DDB42A13756100240BBA /* EventSource in Frameworks */,
 				07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +149,7 @@
 		076A4A8729EA9C0500BD9C79 /* BC2 */ = {
 			isa = PBXGroup;
 			children = (
+				3D06DDB72A15192200240BBA /* Data */,
 				3D06DD6A2A0BE00600240BBA /* Cell */,
 				07D1EAC62A066E55007C67AF /* Model */,
 				07D1EAC12A0669CA007C67AF /* Network */,
@@ -248,6 +253,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3D06DDB72A15192200240BBA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3D06DDB52A14D25400240BBA /* MyData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,6 +285,7 @@
 				07D1EAB12A04B3D7007C67AF /* GoogleSignInSwift */,
 				07D1EABD2A050DC3007C67AF /* FirebaseAnalytics */,
 				07D1EABF2A050DC3007C67AF /* FirebaseAuth */,
+				3D06DDB32A13756100240BBA /* EventSource */,
 			);
 			productName = BC2;
 			productReference = 076A4A8529EA9C0500BD9C79 /* BC2.app */;
@@ -351,6 +365,7 @@
 				07B7E01229FE4C6C00FE70D7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				07D1EAAE2A04B3D7007C67AF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				07D1EABC2A050DC3007C67AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */,
 			);
 			productRefGroup = 076A4A8629EA9C0500BD9C79 /* Products */;
 			projectDirPath = "";
@@ -410,6 +425,7 @@
 				076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */,
 				076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */,
 				07B7DFD829F5026700FE70D7 /* PopUpViewController.swift in Sources */,
+				3D06DDB62A14D25400240BBA /* MyData.swift in Sources */,
 				076A4AD429EB374300BD9C79 /* SubView.swift in Sources */,
 				076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */,
 				076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */,
@@ -790,6 +806,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Recouse/EventSource";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -827,6 +851,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 07D1EABC2A050DC3007C67AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		3D06DDB32A13756100240BBA /* EventSource */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */;
+			productName = EventSource;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

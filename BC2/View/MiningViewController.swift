@@ -131,6 +131,11 @@ class MiningViewController: BaseVC {
         self.navigationItem.hidesBackButton = true
     }
     func randomCode(){
+        let myData = MyData.shared
+        print(myData.moneyValue)
+        myMoney = Int(myData.moneyValue)!
+        print(myMoney)
+        showMoney()
         DispatchQueue.global().async { [self] in
             let temp = 15
             var ranNum: Int
@@ -158,6 +163,7 @@ class MiningViewController: BaseVC {
                 Thread.sleep(forTimeInterval: 1)
             }
         }
+        print(myMoney)
     }
     
     func changeNameLabel() {
@@ -181,7 +187,12 @@ class MiningViewController: BaseVC {
         let result: String = moneyFormatter.string(for: myMoney)! + " 원"
         boxInLabel.amountLabel.text = result
     }
-    
+    func showMoney() {
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: myMoney)! + " 원"
+        boxInLabel.amountLabel.text = result
+    }
     func addMoney() {
         myMoney += 100
         let moneyFormatter: NumberFormatter = NumberFormatter()
@@ -195,7 +206,13 @@ class MiningViewController: BaseVC {
         nextVC.amount = myMoney
         nextVC.userName = self.userName
         //nextVC.userEmail = self.userEmail
-        self.navigationController?.pushViewController(nextVC, animated: false)
+        let myData = MyData.shared
+        print(myData.moneyValue)
+        print(String(myMoney))
+        myData.moneyValue = String(myMoney)
+        print(String(myMoney))
+        print(myData.moneyValue)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func goInfo(){
