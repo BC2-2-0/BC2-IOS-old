@@ -12,7 +12,6 @@ struct MoneyData: Decodable {
     let balance: String
 }
 
-var kkkkk: String = " "
 var responseBalance: Int = 0
 var check: Int = 0
 let myData = MyData.shared
@@ -280,8 +279,7 @@ class MainViewController: BaseVC {
         print("ASD")
         
         let eventSourceURL = "http://13.125.77.165:3000/receive"
-//        let result: String = String(kkkkk)
-//        boxInLabel.amountLabel.text = result
+        
         let eventSource = EventSource(request: .init(url: URL(string: eventSourceURL)!))
         self.eventSource = eventSource
         print(myData.moneyValue)
@@ -304,7 +302,6 @@ class MainViewController: BaseVC {
                             print(myData.moneyValue)
                             responseBalance = Int(response.balance)! - 100
                             let result: String = String(responseBalance) + " 원"
-                            kkkkk = result
                             boxInLabel.amountLabel.text = result
                             check = 1
                         }
@@ -314,7 +311,6 @@ class MainViewController: BaseVC {
                             responseBalance = Int(myData.moneyValue)!
                             responseBalance = responseBalance + 10
                             let result: String = String(responseBalance) + " 원"
-                            kkkkk = result
                             boxInLabel.amountLabel.text = result
                             myData.moneyValue = String(Int(myData.moneyValue)! + 10)
                             print(myData.moneyValue)
