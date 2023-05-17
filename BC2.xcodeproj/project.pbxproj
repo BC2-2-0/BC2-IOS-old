@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0737A6252A15227900DD7891 /* Bootpay_SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 0737A6242A15227900DD7891 /* Bootpay_SPM */; };
+		0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6262A15230500DD7891 /* AddPriceButton.swift */; };
+		0737A6292A1523D300DD7891 /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6282A1523D300DD7891 /* ChargeViewController.swift */; };
+		0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */; };
 		076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */; };
 		076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */; };
 		076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9129EA9C0600BD9C79 /* Assets.xcassets */; };
@@ -62,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0737A6262A15230500DD7891 /* AddPriceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceButton.swift; sourceTree = "<group>"; };
+		0737A6282A1523D300DD7891 /* ChargeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeViewController.swift; sourceTree = "<group>"; };
+		0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
 		076A4A8529EA9C0500BD9C79 /* BC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +115,7 @@
 				07D1EAC02A050DC3007C67AF /* FirebaseAuth in Frameworks */,
 				3D06DDB42A13756100240BBA /* EventSource in Frameworks */,
 				07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */,
+				0737A6252A15227900DD7891 /* Bootpay_SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +190,8 @@
 				076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */,
 				07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */,
 				3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */,
+				0737A6282A1523D300DD7891 /* ChargeViewController.swift */,
+				0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,6 +224,7 @@
 				076A4AD929EB37C900BD9C79 /* PaymentButton.swift */,
 				07B7DFD529F500B900FE70D7 /* PopUpView.swift */,
 				3D06DD642A0A8EAB00240BBA /* PaymentListMainLabel.swift */,
+				0737A6262A15230500DD7891 /* AddPriceButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -286,6 +297,7 @@
 				07D1EABD2A050DC3007C67AF /* FirebaseAnalytics */,
 				07D1EABF2A050DC3007C67AF /* FirebaseAuth */,
 				3D06DDB32A13756100240BBA /* EventSource */,
+				0737A6242A15227900DD7891 /* Bootpay_SPM */,
 			);
 			productName = BC2;
 			productReference = 076A4A8529EA9C0500BD9C79 /* BC2.app */;
@@ -366,6 +378,7 @@
 				07D1EAAE2A04B3D7007C67AF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				07D1EABC2A050DC3007C67AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */,
+				0737A6232A15227900DD7891 /* XCRemoteSwiftPackageReference "Bootpay_SPM" */,
 			);
 			productRefGroup = 076A4A8629EA9C0500BD9C79 /* Products */;
 			projectDirPath = "";
@@ -413,11 +426,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0737A6292A1523D300DD7891 /* ChargeViewController.swift in Sources */,
 				076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */,
 				07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */,
 				07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */,
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
 				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
+				0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */,
+				0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,
 				3D06DD652A0A8EAC00240BBA /* PaymentListMainLabel.swift in Sources */,
@@ -766,6 +782,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0737A6232A15227900DD7891 /* XCRemoteSwiftPackageReference "Bootpay_SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aaiinn/Bootpay_SPM.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		07B7E00C29FE4C4900FE70D7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -817,6 +841,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0737A6242A15227900DD7891 /* Bootpay_SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0737A6232A15227900DD7891 /* XCRemoteSwiftPackageReference "Bootpay_SPM" */;
+			productName = Bootpay_SPM;
+		};
 		07B7E00D29FE4C4900FE70D7 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 07B7E00C29FE4C4900FE70D7 /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -48,8 +48,6 @@ class StartViewController: BaseVC{
     
     private let googleSignupButton = GIDSignInButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 28
-        $0.backgroundColor = .white
         $0.layer.shadowColor = UIColor(named: "ShadowColor")?.cgColor
         $0.layer.shadowOffset = CGSize(width: 1, height: 4)
         $0.layer.shadowOpacity = 1

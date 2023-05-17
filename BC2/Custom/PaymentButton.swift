@@ -24,7 +24,7 @@ final class PaymentButton: UIButton {
     func setupView() {
         layer.cornerRadius = 12
         backgroundColor = UIColor(named: "Button1Color")
-        setTitle("결제", for: .normal)
+        setTitle("QR 결제", for: .normal)
         setTitleColor(UIColor.white, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 16)
     }
