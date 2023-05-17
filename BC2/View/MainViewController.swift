@@ -23,7 +23,7 @@ class MainViewController: BaseVC {
     
     var balances: String = " "
     
-    var kkkk: String = " "
+    var changeAmount: String = " "
 
     var amount = 0
     
@@ -257,7 +257,7 @@ class MainViewController: BaseVC {
     }
     
     func changeAmountLabel() {
-        boxInLabel.amountLabel.text = kkkk
+        boxInLabel.amountLabel.text = changeAmount
     }
     
     func changeNameLabel() {
