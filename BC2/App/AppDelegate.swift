@@ -8,12 +8,14 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import Bootpay_SPM
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        Bootpay.initialize()
         return true
     }
     

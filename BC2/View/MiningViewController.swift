@@ -8,6 +8,7 @@
 import UIKit
 
 class MiningViewController: BaseVC {
+    var isRandomCodeRunning = true
     
     var userName: String = " "
     var userEmail: String = " "
@@ -139,7 +140,7 @@ class MiningViewController: BaseVC {
         DispatchQueue.global().async { [self] in
             let temp = 15
             var ranNum: Int
-            while true{
+            while isRandomCodeRunning{
                 
                 arrString = ""
                 for _ in 0...temp {
@@ -147,7 +148,7 @@ class MiningViewController: BaseVC {
                     codeArray[temp] = ranNum
                     arrString += String(ranNum,radix:16)
                 }
-//                print("\(arrString)")
+                print("\(arrString)")
                 
                 DispatchQueue.main.async {
                     miningCodeButton.setTitle(arrString, for: .normal)
@@ -205,7 +206,10 @@ class MiningViewController: BaseVC {
         let nextVC = MainViewController()
         nextVC.amount = myMoney
         nextVC.userName = self.userName
-        //nextVC.userEmail = self.userEmail
+        nextVC.userEmail = self.userEmail
+        
+        isRandomCodeRunning = false
+        
         let myData = MyData.shared
         print(myData.moneyValue)
         print(String(myMoney))

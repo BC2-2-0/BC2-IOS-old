@@ -7,6 +7,7 @@
 
 import UIKit
 import EventSource
+import Firebase
 
 struct MoneyData: Decodable {
     let balance: String
@@ -21,11 +22,20 @@ class MainViewController: BaseVC {
     var userName: String = " "
     var userEmail: String = " "
     
+    var amount: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "Amount")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "Amount")
+        }
+    }
+    
     var balances: String = " "
     
     var changeAmount: String = " "
 
-    var amount = 0
+    //var amount = 0
     
     var moneyCount: Int = 0
     
@@ -50,7 +60,9 @@ class MainViewController: BaseVC {
     
     private let miniBlock = BaseVC().block
     
-    private let paymentButton = PaymentButton()
+    private let paymentButton = PaymentButton().then {
+        $0.addTarget(self, action: #selector(goToQR), for: .touchUpInside)
+    }
     
     private let miningButton = PaymentButton().then{
         $0.setTitle("코인 채굴", for: .normal)
@@ -100,6 +112,7 @@ class MainViewController: BaseVC {
         $0.titleLabel?.numberOfLines = 3
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        $0.addTarget(self, action: #selector(goToCharge), for: .touchUpInside)
     }
     private var eventSource: EventSource?
 
@@ -195,8 +208,8 @@ class MainViewController: BaseVC {
             self.popUpView.alpha = 0
             self.backgroundView.alpha = 0
             self.coinRechargeLabel.alpha = 0
-            self.coinImageView.alpha = 0
-            self.rechargeImageView.alpha = 0
+            //self.coinImageView.alpha = 0
+            //self.rechargeImageView.alpha = 0
         }) { _ in
             self.popUpView.removeFromSuperview()
             self.backgroundView.removeFromSuperview()
@@ -233,14 +246,14 @@ class MainViewController: BaseVC {
         goMiningButton.snp.makeConstraints{
             $0.width.equalTo(153)
             $0.height.equalTo(80)
-            $0.bottom.equalTo(view.safeAreaInsets).inset(24)
-            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaInsets).inset(25)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
         goRechargeButton.snp.makeConstraints{
             $0.width.equalTo(153)
             $0.height.equalTo(80)
-            $0.bottom.equalTo(view.safeAreaInsets).inset(24)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaInsets).inset(25)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
         coinImageView.snp.makeConstraints{
             $0.width.equalTo(24)
@@ -334,6 +347,14 @@ extension MainViewController {
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
+    @objc func goToQR(){
+        let nextVC = QRCodeReaderViewController()
+        nextVC.myMoney = amount
+        nextVC.userEmail = self.userEmail
+        nextVC.modalPresentationStyle = .overCurrentContext
+        self.present(nextVC, animated: true, completion: nil)
+    }
+    
     @objc func goToMining(){
         let nextVC = MiningViewController()
         nextVC.myMoney = amount
@@ -350,6 +371,11 @@ extension MainViewController {
 //        Task {
 //            await eventSource?.close()
 //        }
+    }
+    
+    @objc func goToCharge(){
+        let nextVC = ChargeViewController()
+        self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
     @objc func showPopup() {
