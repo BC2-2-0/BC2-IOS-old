@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EventSource
 
 class MiningViewController: BaseVC {
     var isRandomCodeRunning = true
@@ -17,6 +18,8 @@ class MiningViewController: BaseVC {
     
     var codeArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     var arrString = ""
+    
+    private var eventSource: EventSource?
     
     private let headerView = Header()
     
@@ -132,8 +135,9 @@ class MiningViewController: BaseVC {
         self.navigationItem.hidesBackButton = true
     }
     func randomCode(){
+        serverSendEvent()
         print(myData.moneyValue)
-        myMoney = Int(myData.moneyValue)!
+        myMoney = UserDefaults.standard.integer(forKey: "money")
         print(myMoney)
         showMoney()
         DispatchQueue.global().async { [self] in
@@ -157,9 +161,11 @@ class MiningViewController: BaseVC {
                     DispatchQueue.main.async {
                         coinAction.play()
                         addMoney()
+                        print("asdf", myMoney)
                         if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
                             addMoney()
                         }
+                        UserDefaults.standard.setValue(myMoney, forKey: "money")
                     }
                 }
                 Thread.sleep(forTimeInterval: 1)
@@ -167,7 +173,12 @@ class MiningViewController: BaseVC {
         }
         print(myMoney)
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        Task {
+            await eventSource?.close()
+        }
+    }
     func changeNameLabel() {
         let result: String = userName
         headerView.userNameLabel.text = result + "님"
@@ -196,12 +207,48 @@ class MiningViewController: BaseVC {
         boxInLabel.amountLabel.text = result
     }
     func addMoney() {
-        myMoney += 110
-        
+        myMoney += 100
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let result: String = moneyFormatter.string(for: myMoney)! + " 원"
         boxInLabel.amountLabel.text = result
+    }
+    
+    func serverSendEvent(){
+        let eventSourceURL = "http://13.125.77.165:3000/receive"
+        let eventSource = EventSource(request: .init(url: URL(string: eventSourceURL)!))
+        eventSource.connect()
+        
+        Task {
+            for await event in eventSource.events {
+                switch event {
+                case .open:
+                    print("성공")
+                    print("Connection was opened.")
+                case .error(let error):
+                    print("에러")
+                    print("Received an error:", error.localizedDescription)
+                case .message(let message):
+                    print("메시지")
+                    print("Received a message", message.data ?? "데이터 없음")
+                    
+                    do {
+                        let response = try JSONDecoder().decode(ChargeResponse
+                            .self, from: message.data!.data(using: .utf8)!)
+                        myMoney = UserDefaults.standard.integer(forKey: "money") + 10
+                        
+                        showMoney()
+                        UserDefaults.standard.setValue(myMoney, forKey: "money")
+                        
+                    } catch {
+                        
+                    }
+                case .closed:
+                    print("Connection was closed.")
+                }
+            }
+        }
+        
     }
     
     @objc func goToMain(){

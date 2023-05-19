@@ -49,6 +49,7 @@
 		3D973EC72A15F02900C63909 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D973EC62A15F02900C63909 /* RealmModel.swift */; };
 		3D973ECA2A16139B00C63909 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3D973EC92A16139B00C63909 /* Realm */; };
 		3D973ECC2A16139B00C63909 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D973ECB2A16139B00C63909 /* RealmSwift */; };
+		3D973ED02A17C3EF00C63909 /* ChargeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D973ECF2A17C3EF00C63909 /* ChargeResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3D06DDB52A14D25400240BBA /* MyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyData.swift; sourceTree = "<group>"; };
 		3D973EC62A15F02900C63909 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		3D973ECF2A17C3EF00C63909 /* ChargeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				07D1EAC92A066EA8007C67AF /* SendModel.swift */,
 				07D1EAD42A067D6F007C67AF /* Service.swift */,
 				3D973EC62A15F02900C63909 /* RealmModel.swift */,
+				3D973ECF2A17C3EF00C63909 /* ChargeResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */,
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
 				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
+				3D973ED02A17C3EF00C63909 /* ChargeResponse.swift in Sources */,
 				0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */,
 				0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
