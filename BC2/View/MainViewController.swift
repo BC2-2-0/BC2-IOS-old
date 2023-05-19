@@ -8,6 +8,7 @@
 import UIKit
 import EventSource
 import Firebase
+import RealmSwift
 
 struct MoneyData: Decodable {
     let balance: String
@@ -21,6 +22,7 @@ class MainViewController: BaseVC {
     
     var userName: String = " "
     var userEmail: String = " "
+    var myMoney: Int = 0
     
     var amount: Int {
         get {
@@ -114,12 +116,17 @@ class MainViewController: BaseVC {
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         $0.addTarget(self, action: #selector(goToCharge), for: .touchUpInside)
     }
+    
+    override func realmConnection() {
+        let realm = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
     private var eventSource: EventSource?
-
+    
     override func addView() {
+        showMoney(0)
         changeNameLabel()
         changeAmountLabel()
-        let myData = MyData.shared
         myData.moneyValue = String(responseBalance)
         responseBalance = Int(myData.moneyValue)!
         serverSendEvent()
@@ -268,6 +275,12 @@ class MainViewController: BaseVC {
             $0.top.equalTo(goRechargeButton.snp.top).inset(16)
         }
     }
+    func showMoney(_ balance: Int) {
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: balance)! + " 원"
+        boxInLabel.amountLabel.text = result
+    }
     
     func changeAmountLabel() {
         boxInLabel.amountLabel.text = changeAmount
@@ -290,9 +303,13 @@ class MainViewController: BaseVC {
     
     func serverSendEvent(){
         print("ASD")
-        
+//        print(charge(email: self.userEmail, balance: self.myMoney, charged_money: 100))
+        if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
+            myMoney += 110
+        }
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
         let eventSourceURL = "http://13.125.77.165:3000/receive"
-        
         let eventSource = EventSource(request: .init(url: URL(string: eventSourceURL)!))
         self.eventSource = eventSource
         print(myData.moneyValue)
@@ -309,25 +326,15 @@ class MainViewController: BaseVC {
                 case .message(let message):
                     do {
                         let response = try JSONDecoder().decode(MoneyData.self, from: message.data!.data(using: .utf8)!)
-                        if check == 0 {
-                            myData.moneyValue = String(responseBalance)
-                            responseBalance = Int(myData.moneyValue)!
-                            print(myData.moneyValue)
-                            responseBalance = Int(response.balance)! - 100
-                            let result: String = String(responseBalance) + " 원"
-                            boxInLabel.amountLabel.text = result
-                            check = 1
-                        }
-                        else {
-                            print(myData.moneyValue)
-                            myData.moneyValue = String(responseBalance)
-                            responseBalance = Int(myData.moneyValue)!
-                            responseBalance = responseBalance + 10
-                            let result: String = String(responseBalance) + " 원"
-                            boxInLabel.amountLabel.text = result
-                            myData.moneyValue = String(Int(myData.moneyValue)! + 10)
-                            print(myData.moneyValue)
-                        }
+
+                        print(myData.moneyValue)
+                        myData.moneyValue = String(responseBalance)
+                        responseBalance = Int(myData.moneyValue)!
+                        responseBalance = responseBalance + 110
+                        let result: String = moneyFormatter.string(for: responseBalance)! + " 원"
+                        boxInLabel.amountLabel.text = result
+                        myData.moneyValue = String(Int(myData.moneyValue)! + 110)
+                        print(myData.moneyValue)
                     } catch {
                         
                     }

@@ -33,6 +33,7 @@ class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        realmConnection()
         addView()
         setLayout()
         addTarget()
@@ -43,7 +44,7 @@ class BaseVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
     }
-    
+    func realmConnection(){}
     func addView(){}
     func setLayout(){}
     func addTarget(){}
