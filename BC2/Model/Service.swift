@@ -53,7 +53,7 @@ func charge(email: String, balance: Int, charged_money: Int) {
                         return
                     }
                     
-                    print(statusCode)
+                    //print(statusCode)
                 }
             } catch {
                 print("응답 데이터 처리 실패: \(error)")
@@ -70,7 +70,7 @@ func charge(email: String, balance: Int, charged_money: Int) {
 import Foundation
 
 //충전 요청 함수
-func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int) {
+func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int, number: Int) {
     let urlString = APIConstants.QRURL
     guard let url = URL(string: urlString) else {
         print("유효하지 않은 URL입니다.")
@@ -81,7 +81,7 @@ func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: I
     request.httpMethod = "POST"  // POST 요청 설정
     
     // Request Body 생성
-    let requestBody = "email=\(email)&balance=\(balance)&menu=\(menu)&price=\(price)&quantity=\(quantity)"
+    let requestBody = "email=\(email)&balance=\(balance)&menu=\(menu)&price=\(price)&quantity=\(quantity)&number=\(number)"
     let httpBody = requestBody.data(using: .utf8)
     
     request.httpBody = httpBody

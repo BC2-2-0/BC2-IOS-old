@@ -18,6 +18,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>BC2.app</string>
 				<string>com.googleusercontent.apps.618468329948-fdurrdlrbg6de58b85psoitpl1o2bvdr</string>
 			</array>
 		</dict>

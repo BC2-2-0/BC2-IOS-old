@@ -9,6 +9,10 @@ import UIKit
 import Bootpay_SPM
 
 class ChargeViewController: BaseVC, UITextFieldDelegate {
+    var userName: String = " "
+    var userEmail: String = " "
+    var myMoney = 0
+    
     var amount = 0
     
     private let chargeMoneyLabel = UILabel().then {
@@ -120,29 +124,21 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
         payload.orderId = String(NSTimeIntervalSince1970)
         payload.pg = "토스"
         payload.method = "계좌이체"
-        payload.orderName = "테스트아이템"
+        payload.orderName = "부트페이 결제 테스트"
         payload.extra = BootExtra()
         
         payload.extra?.cardQuota = "3"
         
-        let customParams: [String: String] = [
-            "callbackParam1": "value12",
-            "callbackParam2": "value34",
-            "callbackParam3": "value56",
-            "callbackParam4": "value78",
-        ]
-        
-        payload.metadata = customParams
-        
         
         let user = BootUser()
-        user.username = "테스트"
+        user.username = userName
         user.phone = "01012345678"
         payload.user = user
         return payload
     }
     
     @objc func requestPayment() {
+        
         guard let chargeAmountText = chargeMoneyTextField.text, !chargeAmountText.isEmpty else {
             showAlert(message: "충전할 금액을 입력해 주세요")
             return
@@ -162,8 +158,18 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
                 //                Bootpay.transactionConfirm()
                 //                return false //재고가 없어서 결제를 승인하지 않을때
             }
-            .onDone { data in
+            .onDone { [weak self] data in
                 print("-- done: (data)")
+                
+                let mainVC = MainViewController()
+                self?.myMoney += mainVC.amount
+                
+                if let url = URL(string: "BC2.app://paymentcompleted") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+                
+                let successVC = ChargeSuccessViewController()
+                self?.navigationController?.pushViewController(successVC, animated: false)
             }
             .onError { data in
                 print("-- error: (data)")

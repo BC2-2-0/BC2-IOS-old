@@ -348,7 +348,8 @@ extension MainViewController {
     }
     
     @objc func goToQR(){
-        let nextVC = QRCodeReaderViewController()
+        let nextVC = ReaderViewController()
+        nextVC.userName = self.userName
         nextVC.myMoney = amount
         nextVC.userEmail = self.userEmail
         nextVC.modalPresentationStyle = .overCurrentContext
@@ -375,6 +376,9 @@ extension MainViewController {
     
     @objc func goToCharge(){
         let nextVC = ChargeViewController()
+        nextVC.userName = self.userName
+        nextVC.userEmail = self.userEmail
+        nextVC.myMoney = self.amount
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

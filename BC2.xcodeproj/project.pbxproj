@@ -11,6 +11,10 @@
 		0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6262A15230500DD7891 /* AddPriceButton.swift */; };
 		0737A6292A1523D300DD7891 /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6282A1523D300DD7891 /* ChargeViewController.swift */; };
 		0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */; };
+		0737A6312A15901100DD7891 /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6302A15901100DD7891 /* ReaderView.swift */; };
+		0737A6332A15918400DD7891 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6322A15918400DD7891 /* ReaderViewController.swift */; };
+		0737A6372A167F4700DD7891 /* ChargeSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */; };
+		0737A6392A1681E300DD7891 /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = 0737A6382A1681E300DD7891 /* success.json */; };
 		076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */; };
 		076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */; };
 		076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 076A4A9129EA9C0600BD9C79 /* Assets.xcassets */; };
@@ -69,6 +73,10 @@
 		0737A6262A15230500DD7891 /* AddPriceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceButton.swift; sourceTree = "<group>"; };
 		0737A6282A1523D300DD7891 /* ChargeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeViewController.swift; sourceTree = "<group>"; };
 		0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
+		0737A6302A15901100DD7891 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
+		0737A6322A15918400DD7891 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
+		0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeSuccessViewController.swift; sourceTree = "<group>"; };
+		0737A6382A1681E300DD7891 /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
 		076A4A8529EA9C0500BD9C79 /* BC2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BC2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		076A4A8829EA9C0500BD9C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		076A4A8A29EA9C0500BD9C79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0737A62F2A158FF800DD7891 /* QRTest */ = {
+			isa = PBXGroup;
+			children = (
+				0737A6302A15901100DD7891 /* ReaderView.swift */,
+				0737A6322A15918400DD7891 /* ReaderViewController.swift */,
+			);
+			path = QRTest;
+			sourceTree = "<group>";
+		};
 		076A4A7C29EA9C0500BD9C79 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +174,7 @@
 		076A4A8729EA9C0500BD9C79 /* BC2 */ = {
 			isa = PBXGroup;
 			children = (
+				0737A62F2A158FF800DD7891 /* QRTest */,
 				3D06DDB72A15192200240BBA /* Data */,
 				3D06DD6A2A0BE00600240BBA /* Cell */,
 				07D1EAC62A066E55007C67AF /* Model */,
@@ -192,6 +210,7 @@
 				3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */,
 				0737A6282A1523D300DD7891 /* ChargeViewController.swift */,
 				0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */,
+				0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +218,7 @@
 		076A4ABA29EA9C6B00BD9C79 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				0737A6382A1681E300DD7891 /* success.json */,
 				07BF6AD029EC459800986AF7 /* coin.json */,
 				076A4ACA29EA9F4300BD9C79 /* block.json */,
 				07BF6AD229ECBAC200986AF7 /* coinAction.json */,
@@ -397,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				076A4A9529EA9C0600BD9C79 /* LaunchScreen.storyboard in Resources */,
+				0737A6392A1681E300DD7891 /* success.json in Resources */,
 				076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */,
 				076A4ACB29EA9F4300BD9C79 /* block.json in Resources */,
 				07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */,
@@ -431,17 +452,20 @@
 				07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */,
 				07D1EACA2A066EA8007C67AF /* SendModel.swift in Sources */,
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
+				0737A6332A15918400DD7891 /* ReaderViewController.swift in Sources */,
 				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
 				0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */,
 				0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,
 				3D06DD652A0A8EAC00240BBA /* PaymentListMainLabel.swift in Sources */,
+				0737A6372A167F4700DD7891 /* ChargeSuccessViewController.swift in Sources */,
 				076A4A8929EA9C0500BD9C79 /* AppDelegate.swift in Sources */,
 				076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */,
 				076A4A8B29EA9C0500BD9C79 /* SceneDelegate.swift in Sources */,
 				07B7DFD829F5026700FE70D7 /* PopUpViewController.swift in Sources */,
 				3D06DDB62A14D25400240BBA /* MyData.swift in Sources */,
+				0737A6312A15901100DD7891 /* ReaderView.swift in Sources */,
 				076A4AD429EB374300BD9C79 /* SubView.swift in Sources */,
 				076A4ABE29EA9C9F00BD9C79 /* BaseVC.swift in Sources */,
 				076A4ACD29EA9FAD00BD9C79 /* StartViewController.swift in Sources */,
@@ -615,7 +639,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6WZYJKR3V9;
+				DEVELOPMENT_TEAM = S4K8SAN9WG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -643,7 +667,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6WZYJKR3V9;
+				DEVELOPMENT_TEAM = S4K8SAN9WG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
