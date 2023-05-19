@@ -46,6 +46,9 @@
 		3D06DD6E2A0BE02F00240BBA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */; };
 		3D06DDB42A13756100240BBA /* EventSource in Frameworks */ = {isa = PBXBuildFile; productRef = 3D06DDB32A13756100240BBA /* EventSource */; };
 		3D06DDB62A14D25400240BBA /* MyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06DDB52A14D25400240BBA /* MyData.swift */; };
+		3D973EC72A15F02900C63909 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D973EC62A15F02900C63909 /* RealmModel.swift */; };
+		3D973ECA2A16139B00C63909 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3D973EC92A16139B00C63909 /* Realm */; };
+		3D973ECC2A16139B00C63909 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D973ECB2A16139B00C63909 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,7 @@
 		3D06DD6B2A0BE01700240BBA /* BC2TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BC2TableViewCell.swift; sourceTree = "<group>"; };
 		3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3D06DDB52A14D25400240BBA /* MyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyData.swift; sourceTree = "<group>"; };
+		3D973EC62A15F02900C63909 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +115,11 @@
 				07B7E00E29FE4C4900FE70D7 /* SnapKit in Frameworks */,
 				07D1EABE2A050DC3007C67AF /* FirebaseAnalytics in Frameworks */,
 				07B7E01129FE4C5500FE70D7 /* Then in Frameworks */,
+				3D973ECA2A16139B00C63909 /* Realm in Frameworks */,
 				07D1EAB22A04B3D7007C67AF /* GoogleSignInSwift in Frameworks */,
 				07D1EAC02A050DC3007C67AF /* FirebaseAuth in Frameworks */,
 				3D06DDB42A13756100240BBA /* EventSource in Frameworks */,
+				3D973ECC2A16139B00C63909 /* RealmSwift in Frameworks */,
 				07B7E01429FE4C6C00FE70D7 /* Lottie in Frameworks */,
 				0737A6252A15227900DD7891 /* Bootpay_SPM in Frameworks */,
 			);
@@ -141,6 +147,7 @@
 			children = (
 				076A4A8729EA9C0500BD9C79 /* BC2 */,
 				076A4A8629EA9C0500BD9C79 /* Products */,
+				3D973EC82A16139B00C63909 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +250,7 @@
 			children = (
 				07D1EAC92A066EA8007C67AF /* SendModel.swift */,
 				07D1EAD42A067D6F007C67AF /* Service.swift */,
+				3D973EC62A15F02900C63909 /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +280,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		3D973EC82A16139B00C63909 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +313,8 @@
 				07D1EABF2A050DC3007C67AF /* FirebaseAuth */,
 				3D06DDB32A13756100240BBA /* EventSource */,
 				0737A6242A15227900DD7891 /* Bootpay_SPM */,
+				3D973EC92A16139B00C63909 /* Realm */,
+				3D973ECB2A16139B00C63909 /* RealmSwift */,
 			);
 			productName = BC2;
 			productReference = 076A4A8529EA9C0500BD9C79 /* BC2.app */;
@@ -379,6 +396,7 @@
 				07D1EABC2A050DC3007C67AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */,
 				0737A6232A15227900DD7891 /* XCRemoteSwiftPackageReference "Bootpay_SPM" */,
+				3D973EC12A15EF0600C63909 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 076A4A8629EA9C0500BD9C79 /* Products */;
 			projectDirPath = "";
@@ -449,6 +467,7 @@
 				07D1EAC52A066D93007C67AF /* NetworkResult.swift in Sources */,
 				3D06DD6E2A0BE02F00240BBA /* ListViewController.swift in Sources */,
 				076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */,
+				3D973EC72A15F02900C63909 /* RealmModel.swift in Sources */,
 				3D06DD6C2A0BE01700240BBA /* BC2TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +637,7 @@
 				DEVELOPMENT_TEAM = 6WZYJKR3V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -646,6 +666,7 @@
 				DEVELOPMENT_TEAM = 6WZYJKR3V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -838,6 +859,14 @@
 				minimumVersion = 0.0.5;
 			};
 		};
+		3D973EC12A15EF0600C63909 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -885,6 +914,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3D06DDB22A13756100240BBA /* XCRemoteSwiftPackageReference "EventSource" */;
 			productName = EventSource;
+		};
+		3D973EC92A16139B00C63909 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D973EC12A15EF0600C63909 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		3D973ECB2A16139B00C63909 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D973EC12A15EF0600C63909 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

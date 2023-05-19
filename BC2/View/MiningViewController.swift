@@ -132,7 +132,6 @@ class MiningViewController: BaseVC {
         self.navigationItem.hidesBackButton = true
     }
     func randomCode(){
-        let myData = MyData.shared
         print(myData.moneyValue)
         myMoney = Int(myData.moneyValue)!
         print(myMoney)
@@ -158,7 +157,9 @@ class MiningViewController: BaseVC {
                     DispatchQueue.main.async {
                         coinAction.play()
                         addMoney()
-                        charge(email: self.userEmail, balance: self.myMoney, charged_money: 100)
+                        if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
+                            addMoney()
+                        }
                     }
                 }
                 Thread.sleep(forTimeInterval: 1)
@@ -195,7 +196,8 @@ class MiningViewController: BaseVC {
         boxInLabel.amountLabel.text = result
     }
     func addMoney() {
-        myMoney += 100
+        myMoney += 110
+        
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let result: String = moneyFormatter.string(for: myMoney)! + " 원"
@@ -210,12 +212,6 @@ class MiningViewController: BaseVC {
         
         isRandomCodeRunning = false
         
-        let myData = MyData.shared
-        print(myData.moneyValue)
-        print(String(myMoney))
-        myData.moneyValue = String(myMoney)
-        print(String(myMoney))
-        print(myData.moneyValue)
         self.navigationController?.popViewController(animated: true)
     }
     
