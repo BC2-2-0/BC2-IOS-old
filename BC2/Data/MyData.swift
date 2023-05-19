@@ -9,5 +9,5 @@ import Foundation
 
 class MyData {
     static var shared = MyData()
-    var moneyValue: String = " "
+    var moneyValue: Int = 0
 }

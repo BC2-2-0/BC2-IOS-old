@@ -10,11 +10,17 @@ import EventSource
 import Firebase
 import RealmSwift
 
-struct MoneyData: Decodable {
-    let balance: String
+class MoneyData: Object,Decodable {
+    @Persisted(primaryKey: true) var id: String
+    @Persisted var balance: Int
+    convenience init(balance: Int) {
+        self.init()
+        self.id = UUID().uuidString
+        self.balance = balance
+    }
 }
 
-var responseBalance: Int = 0
+//var responseBalance: Int = 0
 var check: Int = 0
 let myData = MyData.shared
 
@@ -36,7 +42,7 @@ class MainViewController: BaseVC {
     var balances: String = " "
     
     var changeAmount: String = " "
-
+    
     //var amount = 0
     
     var moneyCount: Int = 0
@@ -120,15 +126,22 @@ class MainViewController: BaseVC {
     override func realmConnection() {
         let realm = try! Realm()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        let balance = MoneyData(balance: myData.moneyValue)
+        
+        try! realm.write {  
+            realm.add(balance)
+        }
+        showMoney(myData.moneyValue)
     }
     private var eventSource: EventSource?
     
     override func addView() {
-        showMoney(0)
+        if (UserDefaults.standard.value(forKey: "money") == nil) {
+            UserDefaults.standard.setValue(10000, forKey: "money")
+        }
+        myData.moneyValue = UserDefaults.standard.integer(forKey: "money")
         changeNameLabel()
-        changeAmountLabel()
-        myData.moneyValue = String(responseBalance)
-        responseBalance = Int(myData.moneyValue)!
         serverSendEvent()
         view.addSubview(headerView)
         view.addSubview(miniBlock)
@@ -223,6 +236,13 @@ class MainViewController: BaseVC {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        myData.moneyValue = UserDefaults.standard.integer(forKey: "money")
+        print(UserDefaults.standard.integer(forKey: "money"))
+        showMoney(UserDefaults.standard.integer(forKey: "money"))
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let point = touch.location(in: self.view)
@@ -231,6 +251,7 @@ class MainViewController: BaseVC {
             }
         }
     }
+    
     func popUpViewAddView(){
         self.view.addSubview(backgroundView)
         self.view.addSubview(popUpView)
@@ -275,15 +296,16 @@ class MainViewController: BaseVC {
             $0.top.equalTo(goRechargeButton.snp.top).inset(16)
         }
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        Task {
+            await eventSource?.close()
+        }
+    }
     func showMoney(_ balance: Int) {
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let result: String = moneyFormatter.string(for: balance)! + " 원"
         boxInLabel.amountLabel.text = result
-    }
-    
-    func changeAmountLabel() {
-        boxInLabel.amountLabel.text = changeAmount
     }
     
     func changeNameLabel() {
@@ -307,6 +329,7 @@ class MainViewController: BaseVC {
         if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
             myMoney += 110
         }
+        
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let eventSourceURL = "http://13.125.77.165:3000/receive"
@@ -325,16 +348,14 @@ class MainViewController: BaseVC {
                     print("Received an error:", error.localizedDescription)
                 case .message(let message):
                     do {
-                        let response = try JSONDecoder().decode(MoneyData.self, from: message.data!.data(using: .utf8)!)
-
+                        let response = try JSONDecoder().decode(ChargeResponse.self, from: message.data!.data(using: .utf8)!)
+                        myData.moneyValue = UserDefaults.standard.integer(forKey: "money") + 10
                         print(myData.moneyValue)
-                        myData.moneyValue = String(responseBalance)
-                        responseBalance = Int(myData.moneyValue)!
-                        responseBalance = responseBalance + 110
-                        let result: String = moneyFormatter.string(for: responseBalance)! + " 원"
+                        let result: String = moneyFormatter.string(for: myData.moneyValue)! + " 원"
                         boxInLabel.amountLabel.text = result
-                        myData.moneyValue = String(Int(myData.moneyValue)! + 110)
                         print(myData.moneyValue)
+                        
+                        UserDefaults.standard.setValue(myData.moneyValue, forKey: "money")
                     } catch {
                         
                     }
