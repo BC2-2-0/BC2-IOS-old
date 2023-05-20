@@ -7,9 +7,12 @@
 
 import UIKit
 import Bootpay_SPM
+import CryptoKit
+import RealmSwift
 
 class ChargeViewController: BaseVC, UITextFieldDelegate {
     var amount = 0
+    private let email: String
     
     private let chargeMoneyLabel = UILabel().then {
         $0.text = "충전할 금액을 입력해 주세요"
@@ -49,6 +52,15 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         $0.addTarget(self, action: #selector(requestPayment), for: .touchUpInside)
+    }
+    
+    init(email: String) {
+        self.email = email
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func addView() {
@@ -162,7 +174,19 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
                 //                Bootpay.transactionConfirm()
                 //                return false //재고가 없어서 결제를 승인하지 않을때
             }
-            .onDone { data in
+            .onDone { [weak self] data in
+                guard let self else {
+                    return
+                }
+                let currentMoney = UserDefaults.standard.integer(forKey: "money")
+                let balance = currentMoney + amount
+                let charge = ChargeRealmEntity(balance: "\(balance)", charged_money: "\(amount)", emailHash: SHA256.hash(data: self.email.data(using: .utf8)!).compactMap { String(format: "%02x", $0)}.joined())
+                let realm = try! Realm()
+                
+                try! realm.write {
+                    realm.add(charge)
+                }
+                
                 print("-- done: (data)")
             }
             .onError { data in

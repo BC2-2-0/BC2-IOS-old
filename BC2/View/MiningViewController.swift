@@ -19,7 +19,7 @@ class MiningViewController: BaseVC {
     var codeArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     var arrString = ""
     
-    private var eventSource: EventSource?
+    private var eventSource = EventSource(request: .init(url: URL(string: "http://13.125.77.165:3000/receive")!))
     
     private let headerView = Header()
     
@@ -162,9 +162,6 @@ class MiningViewController: BaseVC {
                         coinAction.play()
                         addMoney()
                         print("asdf", myMoney)
-                        if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
-                            addMoney()
-                        }
                         UserDefaults.standard.setValue(myMoney, forKey: "money")
                     }
                 }
@@ -176,7 +173,7 @@ class MiningViewController: BaseVC {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         Task {
-            await eventSource?.close()
+            await eventSource.close()
         }
     }
     func changeNameLabel() {
@@ -216,7 +213,6 @@ class MiningViewController: BaseVC {
     
     func serverSendEvent(){
         let eventSourceURL = "http://13.125.77.165:3000/receive"
-        let eventSource = EventSource(request: .init(url: URL(string: eventSourceURL)!))
         eventSource.connect()
         
         Task {
