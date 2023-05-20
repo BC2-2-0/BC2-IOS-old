@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import Lottie
+import RealmSwift
 class ListViewController: BaseVC {
     
     private var paymentList = [PaymentRealmEntity] ()
@@ -61,6 +62,12 @@ class ListViewController: BaseVC {
         rechargeDetailTableView.register(
             BC2TableViewCell.self,
             forCellReuseIdentifier: "cell")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let realm = try! Realm()
+        self.paymentList = Array(realm.objects(PaymentRealmEntity.self))
+        self.chargeList = Array(realm.objects(ChargeRealmEntity.self))
     }
     override func addView() {
         view.addSubview(tableViewBG)
@@ -143,10 +150,16 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BC2TableViewCell
         cell.numberLabel.text = "\(indexPath.row + 1)"
+        
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        
         if tableView == rechargeDetailTableView {
             cell.customLabel.text = "\(chargeList[indexPath.row].emailHash.prefix(16))"
-            cell.rechargeLabel.text = chargeList[indexPath.row].charged_money
-            cell.rechargeBalanceLabel.text = chargeList[indexPath.row].balance
+            let rechargeMoney = moneyFormatter.string(for: Int(chargeList[indexPath.row].charged_money)!)
+            cell.rechargeLabel.text = "충전 금액 : \(rechargeMoney ?? " ")"
+            let moneyBalance = moneyFormatter.string(for: Int(chargeList[indexPath.row].balance)!)
+            cell.rechargeBalanceLabel.text = "잔액 : \(moneyBalance ?? " ")"
             cell.itemLabel.isHidden = true
             cell.countLabel.isHidden = true
             cell.paymentAmountLabel.isHidden = true
@@ -156,10 +169,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             cell.customLabel.text = "\(paymentList[indexPath.row].emailHash.prefix(16))"
-            cell.itemLabel.text = paymentList[indexPath.row].menu
-            cell.countLabel.text = paymentList[indexPath.row].quantity
-            cell.paymentAmountLabel.text = "\(Int(paymentList[indexPath.row].price)! * Int(paymentList[indexPath.row].quantity)!)"
-            cell.paymentBalanceLabel.text = paymentList[indexPath.row].balance
+            cell.itemLabel.text = "품목 : \(paymentList[indexPath.row].menu)"
+            cell.countLabel.text = "개수 : \(paymentList[indexPath.row].quantity)"
+            let paymentMoney = moneyFormatter.string(for: Int(paymentList[indexPath.row].price)! * Int(paymentList[indexPath.row].quantity)!)
+            cell.paymentAmountLabel.text = "결제 금액 : \(paymentMoney ?? " ")"
+            let paymentBalance = moneyFormatter.string(for: Int(paymentList[indexPath.row].balance)!)
+            cell.paymentBalanceLabel.text = "잔액 : \(paymentBalance ?? " ")"
             cell.itemLabel.isHidden = false
             cell.countLabel.isHidden = false
             cell.paymentAmountLabel.isHidden = false
