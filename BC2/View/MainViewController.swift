@@ -326,10 +326,6 @@ class MainViewController: BaseVC {
     func serverSendEvent(){
         print("ASD")
 //        print(charge(email: self.userEmail, balance: self.myMoney, charged_money: 100))
-        if charge(email: self.userEmail, balance: self.myMoney, charged_money: 100) {
-            myMoney += 110
-        }
-        
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let eventSourceURL = "http://13.125.77.165:3000/receive"
@@ -402,7 +398,7 @@ extension MainViewController {
     }
     
     @objc func goToCharge(){
-        let nextVC = ChargeViewController()
+        let nextVC = ChargeViewController(email: userEmail)
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

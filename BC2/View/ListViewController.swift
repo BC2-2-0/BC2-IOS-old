@@ -11,6 +11,9 @@ import Then
 import Lottie
 class ListViewController: BaseVC {
     
+    private var paymentList = [PaymentRealmEntity] ()
+    
+    private var chargeList = [ChargeRealmEntity] ()
     let firstLabel = PaymentListMainLabel()
 
     let tableViewBG = UIView().then {
@@ -131,36 +134,19 @@ extension ListViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == rechargeDetailTableView {
-            return 5
+            return chargeList.count
         }
         else{
-            return 10
+            return paymentList.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BC2TableViewCell
-        cell.customLabel.text = "Custom cell \(indexPath.row)"
         cell.numberLabel.text = "\(indexPath.row + 1)"
         if tableView == rechargeDetailTableView {
-            let url = URL(string: "13.125.93.177:3000/send")!
-            var urlrequest = URLRequest(url: url)
-            urlrequest.httpMethod = "POST"
-            let parameter = [
-                "email": "String",
-                "balance": "Int",
-                "charged_money": "Int"
-            ] as [String: Any]
-            
-            let httpbody = try! JSONSerialization.data(withJSONObject: parameter)
-            urlrequest.httpBody = httpbody
-            urlrequest.addValue("application/JavaScript", forHTTPHeaderField: "Content-Type")
-            
-            URLSession.shared.dataTask(with: urlrequest) { data, response, error in
-                if let error {
-                    print(error)
-                }
-            }
-            
+            cell.customLabel.text = "\(chargeList[indexPath.row].emailHash.prefix(16))"
+            cell.rechargeLabel.text = chargeList[indexPath.row].charged_money
+            cell.rechargeBalanceLabel.text = chargeList[indexPath.row].balance
             cell.itemLabel.isHidden = true
             cell.countLabel.isHidden = true
             cell.paymentAmountLabel.isHidden = true
@@ -169,6 +155,11 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.rechargeBalanceLabel.isHidden = false
         }
         else {
+            cell.customLabel.text = "\(paymentList[indexPath.row].emailHash.prefix(16))"
+            cell.itemLabel.text = paymentList[indexPath.row].menu
+            cell.countLabel.text = paymentList[indexPath.row].quantity
+            cell.paymentAmountLabel.text = "\(Int(paymentList[indexPath.row].price)! * Int(paymentList[indexPath.row].quantity)!)"
+            cell.paymentBalanceLabel.text = paymentList[indexPath.row].balance
             cell.itemLabel.isHidden = false
             cell.countLabel.isHidden = false
             cell.paymentAmountLabel.isHidden = false

@@ -6,9 +6,9 @@
 //
 
 import Foundation
-
+import CryptoKit
 //충전 요청 함수
-func charge(email: String, balance: Int, charged_money: Int) -> Bool {
+func charge(email: String, balance: Int, charged_money: Int, completion: @escaping (Result<Void, Error>) -> Void) -> Bool {
     let urlString = APIConstants.sendURL  // 충전 API 엔드포인트 URL
     guard let url = URL(string: urlString) else {
         print("유효하지 않은 URL입니다.")
@@ -19,16 +19,22 @@ func charge(email: String, balance: Int, charged_money: Int) -> Bool {
     request.httpMethod = "POST"  // POST 요청 설정
     
     // Request Body 생성
-    let requestBody = "email=\(email)&balance=\(balance + 10000)&charged_money=\(charged_money)"
-    let httpBody = requestBody.data(using: .utf8)
+//    let requestBody = "email=\(email)&balance=\(balance)&charged_money=\(charged_money)"
+//    let httpBody = requestBody.data(using: .utf8)
+    let requestBody = [
+        "email": email,
+        "balance": balance + charged_money,
+        "charged_money": charged_money
+    ] as [String : Any]
     
-    request.httpBody = httpBody
+    request.httpBody = try! JSONSerialization.data(withJSONObject: requestBody)
 
     var bool: Bool = false
     
     // URLSession을 사용하여 Request 보내기
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
+            completion(.failure(error))
             print("요청 실패: \(error)")
             return
         }
@@ -52,9 +58,12 @@ func charge(email: String, balance: Int, charged_money: Int) -> Bool {
                         print("msg : ", (response as? HTTPURLResponse)?.description ?? "")
                         print("====================================")
                         print("")
+                        
+                        completion(.failure(URLError(.badServerResponse)))
                         return
                     }
                     bool = true
+                    completion(.success(()))
                     
                     print(statusCode)
                 }
@@ -75,7 +84,7 @@ func charge(email: String, balance: Int, charged_money: Int) -> Bool {
 import Foundation
 
 //충전 요청 함수
-func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int) {
+func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int, completion: @escaping (Result<Void, Error>) -> Void) {
     let urlString = APIConstants.QRURL
     guard let url = URL(string: urlString) else {
         print("유효하지 않은 URL입니다.")
@@ -86,14 +95,22 @@ func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: I
     request.httpMethod = "POST"  // POST 요청 설정
     
     // Request Body 생성
-    let requestBody = "email=\(email)&balance=\(balance)&menu=\(menu)&price=\(price)&quantity=\(quantity)"
-    let httpBody = requestBody.data(using: .utf8)
+//    let requestBody = "email=\(email)&balance=\(balance)&menu=\(menu)&price=\(price)&quantity=\(quantity)"
+//    let httpBody = requestBody.data(using: .utf8)
+    let requestBody = [
+        "email": email,
+        "balance": balance,
+        "menu": menu,
+        "price": price,
+        "quantity": quantity
+    ] as [String : Any]
     
-    request.httpBody = httpBody
+    request.httpBody = try! JSONSerialization.data(withJSONObject: requestBody)
     
     // URLSession을 사용하여 Request 보내기
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
         if let error = error {
+            completion(.failure(error))
             print("요청 실패: \(error)")
             return
         }
@@ -117,13 +134,15 @@ func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: I
                         print("msg : ", (response as? HTTPURLResponse)?.description ?? "")
                         print("====================================")
                         print("")
+                        completion(.failure(URLError(.badServerResponse)))
                         return
                     }
-                    
                     print("요청 성공.  상태 코드: \(statusCode)")
+                    completion(.success(()))
                 }
             } catch {
                 print("응답 데이터 처리 실패: \(error)")
+                completion(.failure(error))
             }
         }
     }

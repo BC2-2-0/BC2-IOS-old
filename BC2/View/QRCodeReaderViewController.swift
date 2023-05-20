@@ -7,11 +7,12 @@
 
 import UIKit
 import AVFoundation
-
+import RealmSwift
+import CryptoKit
 class QRCodeReaderViewController: BaseVC {
     
     var userEmail: String = " "
-    var myMoney: Int = 0
+    var myMoney: Int = UserDefaults.standard.integer(forKey: "money")
     
     // 실시간 캡처를 수행하기 위해 AVCaptureSession 개체를 인스턴스화
     private let captureSession = AVCaptureSession()
@@ -147,7 +148,30 @@ extension QRCodeReaderViewController: AVCaptureMetadataOutputObjectsDelegate {
             // 확인 버튼을 눌렀을 때 실행할 코드
             let priceInt = Int(price ?? "") ?? 0
             let quantityInt = Int(quantity ?? "") ?? 0
-            QRPayment(email: self.userEmail, balance: self.myMoney, menu: menu ?? "", price: priceInt, quantity: quantityInt)
+            QRPayment(email: self.userEmail, balance: self.myMoney, menu: menu ?? "", price: priceInt, quantity: quantityInt) { [weak self] _ in
+                guard let self else {
+                    return
+                }
+                let realm = try! Realm()
+                
+                let currentMoney = UserDefaults.standard.integer(forKey: "money")
+                
+                let balance = currentMoney - priceInt * quantityInt
+                
+                UserDefaults.standard.setValue(balance, forKey: "money")
+                
+                let payment = PaymentRealmEntity(emailHash: SHA256.hash(data: self.userEmail.data(using: .utf8)!).compactMap { String(format: "%02x", $0)}.joined(), menu: menu ?? " ", price: "\(priceInt)", quantity: "\(quantityInt)", balance: "\(balance)")
+                
+                try! realm.write {
+                    realm.add(payment)
+                }
+                
+                let successAlert = UIAlertController(title: "성공", message: "결제 완료했습니다!", preferredStyle: .alert)
+                successAlert.addAction(UIAlertAction(title: "확인", style: .default){_ in 
+                    self.dismiss(animated: true)
+                })
+                self.present(successAlert, animated: true)
+            }
         }
         
         alertController.addAction(cancelAction)
