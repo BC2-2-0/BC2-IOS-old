@@ -10,7 +10,6 @@
 		0737A6252A15227900DD7891 /* Bootpay_SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 0737A6242A15227900DD7891 /* Bootpay_SPM */; };
 		0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6262A15230500DD7891 /* AddPriceButton.swift */; };
 		0737A6292A1523D300DD7891 /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6282A1523D300DD7891 /* ChargeViewController.swift */; };
-		0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */; };
 		0737A6312A15901100DD7891 /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6302A15901100DD7891 /* ReaderView.swift */; };
 		0737A6332A15918400DD7891 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6322A15918400DD7891 /* ReaderViewController.swift */; };
 		0737A6372A167F4700DD7891 /* ChargeSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */; };
@@ -72,7 +71,6 @@
 /* Begin PBXFileReference section */
 		0737A6262A15230500DD7891 /* AddPriceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriceButton.swift; sourceTree = "<group>"; };
 		0737A6282A1523D300DD7891 /* ChargeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeViewController.swift; sourceTree = "<group>"; };
-		0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewController.swift; sourceTree = "<group>"; };
 		0737A6302A15901100DD7891 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
 		0737A6322A15918400DD7891 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
 		0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeSuccessViewController.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */,
 				3D06DD6D2A0BE02F00240BBA /* ListViewController.swift */,
 				0737A6282A1523D300DD7891 /* ChargeViewController.swift */,
-				0737A62A2A1523F000DD7891 /* QRCodeReaderViewController.swift */,
 				0737A6362A167F4700DD7891 /* ChargeSuccessViewController.swift */,
 			);
 			path = View;
@@ -454,7 +451,6 @@
 				076A4AD229EB372A00BD9C79 /* Header.swift in Sources */,
 				0737A6332A15918400DD7891 /* ReaderViewController.swift in Sources */,
 				07D1EAC32A0669E0007C67AF /* APIConstants.swift in Sources */,
-				0737A62B2A1523F000DD7891 /* QRCodeReaderViewController.swift in Sources */,
 				0737A6272A15230500DD7891 /* AddPriceButton.swift in Sources */,
 				076A4ACF29EA9FC000BD9C79 /* MainViewController.swift in Sources */,
 				076A4AD629EB375E00BD9C79 /* BoxView.swift in Sources */,

@@ -162,14 +162,17 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
                 print("-- done: (data)")
                 
                 let mainVC = MainViewController()
-                self?.myMoney += mainVC.amount
-                
+                self?.myMoney += self?.amount ?? 0
+                //self?.myMoney = mainVC.amount
+                //mainVC.amount = self?.myMoney ?? 0
                 if let url = URL(string: "BC2.app://paymentcompleted") {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
                 
-                let successVC = ChargeSuccessViewController()
-                self?.navigationController?.pushViewController(successVC, animated: false)
+                if let mainViewController = self?.findMainViewController() {
+                    mainViewController.amount = self?.myMoney ?? 0
+                        self?.navigationController?.popToViewController(mainViewController, animated: true)
+                    }
             }
             .onError { data in
                 print("-- error: (data)")
@@ -177,6 +180,19 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
             .onClose {
                 print("-- close")
             }
+        
+        
+    }
+    
+    func findMainViewController() -> MainViewController? {
+        if let viewControllers = self.navigationController?.viewControllers {
+            for viewController in viewControllers {
+                if let mainViewController = viewController as? MainViewController {
+                    return mainViewController
+                }
+            }
+        }
+        return nil
     }
     
     func showAlert(message: String) {

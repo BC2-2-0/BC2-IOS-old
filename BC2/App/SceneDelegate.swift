@@ -25,6 +25,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let url = URLContexts.first?.url else { return }
             let _ = GIDSignIn.sharedInstance.handle(url)
     }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            // 로그인 실패 처리
+            print("Google 로그인 실패: \(error.localizedDescription)")
+            return
+        }
+        
+        // 로그인 성공 처리
+        // 여기서 rootViewController를 MainViewController로 변경
+        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+        window?.makeKeyAndVisible()
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
