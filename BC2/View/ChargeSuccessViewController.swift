@@ -8,6 +8,8 @@
 import UIKit
 
 class ChargeSuccessViewController: BaseVC {
+    
+    var userName: String = " "
 
     private let successCheck = BaseVC().success
 
@@ -67,7 +69,8 @@ class ChargeSuccessViewController: BaseVC {
     
     @objc func goToMain(){
         let nextVC = MainViewController()
-        self.navigationController?.popToRootViewController(animated: true)
+        nextVC.userName = self.userName
+        self.navigationController?.setViewControllers([nextVC], animated: true)
     }
 
 }

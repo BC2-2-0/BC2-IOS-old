@@ -215,13 +215,13 @@ class MainViewController: BaseVC {
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(block.snp.bottom).offset(30)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
         miningButton.snp.makeConstraints{
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(paymentButton.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
     }
     override func configNavigation() {
@@ -438,6 +438,7 @@ extension MainViewController {
     
     @objc func goToCharge(){
         let nextVC = ChargeViewController(email: userEmail)
+        nextVC.userName = self.userName
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     

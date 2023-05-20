@@ -122,13 +122,13 @@ class MiningViewController: BaseVC {
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(coin.snp.bottom).offset(37)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
         mainButton.snp.makeConstraints{
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(miningCodeButton.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
     }
     override func configNavigation() {
