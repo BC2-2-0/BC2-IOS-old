@@ -12,6 +12,7 @@ import RealmSwift
 
 class ChargeViewController: BaseVC, UITextFieldDelegate {
     var amount = 0
+    var userName: String = " "
     private let email: String
     
     private let chargeMoneyLabel = UILabel().then {
@@ -189,7 +190,8 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
                 }
                 
                 let nextVC = ChargeSuccessViewController()
-                self.navigationController?.pushViewController(nextVC, animated: false)
+                nextVC.userName = self.userName
+                self.navigationController?.setViewControllers([nextVC], animated: false)
                 
                 print("-- done: (data)")
             }

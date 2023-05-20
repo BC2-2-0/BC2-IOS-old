@@ -9,6 +9,7 @@ import UIKit
 import EventSource
 import Firebase
 import RealmSwift
+import GoogleSignIn
 
 class MoneyData: Object,Decodable {
     @Persisted(primaryKey: true) var id: String
@@ -67,6 +68,12 @@ class MainViewController: BaseVC {
     }
     
     private let miniBlock = BaseVC().block
+    
+    private let logoutButton = UIButton().then {
+        $0.setImage(UIImage(systemName: "person.crop.circle.fill"), for: .normal)
+        $0.tintColor = UIColor(named: "Button2Color")
+        $0.addTarget(self, action: #selector(logout), for: .touchUpInside)
+    }
     
     private let paymentButton = PaymentButton().then {
         $0.addTarget(self, action: #selector(goToQR), for: .touchUpInside)
@@ -129,7 +136,7 @@ class MainViewController: BaseVC {
         
         let balance = MoneyData(balance: myData.moneyValue)
         
-        try! realm.write {  
+        try! realm.write {
             realm.add(balance)
         }
         showMoney(myData.moneyValue)
@@ -149,6 +156,7 @@ class MainViewController: BaseVC {
         view.addSubview(box)
         view.addSubview(boxInLabel)
         view.addSubview(goPaymentListBtn)
+        view.addSubview(logoutButton)
         view.addSubview(block)
         view.addSubview(paymentButton)
         view.addSubview(miningButton)
@@ -192,6 +200,11 @@ class MainViewController: BaseVC {
             $0.top.equalTo(boxInLabel.amountLabel.snp.bottom).offset(10)
             $0.leading.equalTo(boxInLabel.amountLabel.snp.leading)
         }
+        logoutButton.snp.makeConstraints{
+            $0.width.height.equalTo(30)
+            $0.top.equalTo(boxInLabel.pointLabel.snp.top)
+            $0.trailing.equalTo(box.boxView.snp.trailing).inset(20)
+        }
         block.snp.makeConstraints{
             $0.width.equalTo(170)
             $0.height.equalTo(200)
@@ -202,13 +215,13 @@ class MainViewController: BaseVC {
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(block.snp.bottom).offset(30)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
         miningButton.snp.makeConstraints{
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(paymentButton.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
     }
     override func configNavigation() {
@@ -308,6 +321,18 @@ class MainViewController: BaseVC {
         boxInLabel.amountLabel.text = result
     }
     
+    func performLogout() {
+        do {
+            try Auth.auth().signOut()
+            let startVC = StartViewController()
+            // GIDSignIn 인스턴스 초기화
+            GIDSignIn.sharedInstance.signOut()
+            self.navigationController?.setViewControllers([startVC], animated: false)
+        } catch {
+            print("로그아웃 실패: \(error.localizedDescription)")
+        }
+    }
+    
     func changeNameLabel() {
         let result: String = userName
         headerView.userNameLabel.text = result + "님"
@@ -325,7 +350,7 @@ class MainViewController: BaseVC {
     
     func serverSendEvent(){
         print("ASD")
-//        print(charge(email: self.userEmail, balance: self.myMoney, charged_money: 100))
+        //        print(charge(email: self.userEmail, balance: self.myMoney, charged_money: 100))
         let moneyFormatter: NumberFormatter = NumberFormatter()
         moneyFormatter.numberStyle = .decimal
         let eventSourceURL = "http://13.125.77.165:3000/receive"
@@ -371,6 +396,21 @@ extension MainViewController {
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
+    @objc func logout(){
+        let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "확인", style: .destructive) { [weak self] _ in
+            // 로그아웃 처리
+            self?.performLogout()
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc func goToQR(){
         let nextVC = ReaderViewController()
         nextVC.userEmail = self.userEmail
@@ -391,13 +431,14 @@ extension MainViewController {
         self.rechargeImageView.isHidden = true
         self.backgroundView.isHidden = true
         self.popUpView.isHidden = true
-//        Task {
-//            await eventSource?.close()
-//        }
+        //        Task {
+        //            await eventSource?.close()
+        //        }
     }
     
     @objc func goToCharge(){
         let nextVC = ChargeViewController(email: userEmail)
+        nextVC.userName = self.userName
         self.navigationController?.pushViewController(nextVC, animated: false)
     }
     
