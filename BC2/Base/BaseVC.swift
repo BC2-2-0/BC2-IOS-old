@@ -12,6 +12,12 @@ import Lottie
 
 class BaseVC: UIViewController {
 
+    lazy var success = LottieAnimationView(name: "success").then {
+        $0.contentMode = .scaleAspectFill
+        $0.loopMode = .loop
+        $0.play()
+    }
+    
     lazy var block = LottieAnimationView(name: "block").then {
         $0.contentMode = .scaleAspectFill
         $0.loopMode = .loop
