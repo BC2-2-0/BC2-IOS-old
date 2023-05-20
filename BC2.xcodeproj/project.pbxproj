@@ -24,6 +24,7 @@
 		076A4AD829EB37A800BD9C79 /* AmountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD729EB37A800BD9C79 /* AmountLabel.swift */; };
 		076A4ADA29EB37C900BD9C79 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4AD929EB37C900BD9C79 /* PaymentButton.swift */; };
 		076A4ADC29EB5E8E00BD9C79 /* MiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */; };
+		0770F3052A18EA1F000215E0 /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = 0770F3042A18EA1F000215E0 /* success.json */; };
 		07B7DFD629F500B900FE70D7 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7DFD529F500B900FE70D7 /* PopUpView.swift */; };
 		07B7DFD829F5026700FE70D7 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */; };
 		07B7E00E29FE4C4900FE70D7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 07B7E00D29FE4C4900FE70D7 /* SnapKit */; };
@@ -95,6 +96,7 @@
 		076A4AD729EB37A800BD9C79 /* AmountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountLabel.swift; sourceTree = "<group>"; };
 		076A4AD929EB37C900BD9C79 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 		076A4ADB29EB5E8E00BD9C79 /* MiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiningViewController.swift; sourceTree = "<group>"; };
+		0770F3042A18EA1F000215E0 /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
 		07B7DFD529F500B900FE70D7 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		07B7DFD729F5026700FE70D7 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		07BF6AD029EC459800986AF7 /* coin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin.json; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		076A4ABA29EA9C6B00BD9C79 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				0770F3042A18EA1F000215E0 /* success.json */,
 				07BF6AD029EC459800986AF7 /* coin.json */,
 				076A4ACA29EA9F4300BD9C79 /* block.json */,
 				07BF6AD229ECBAC200986AF7 /* coinAction.json */,
@@ -444,6 +447,7 @@
 				076A4A9229EA9C0600BD9C79 /* Assets.xcassets in Resources */,
 				076A4ACB29EA9F4300BD9C79 /* block.json in Resources */,
 				07BF6AD329ECBAC200986AF7 /* coinAction.json in Resources */,
+				0770F3052A18EA1F000215E0 /* success.json in Resources */,
 				07D1EABB2A04E459007C67AF /* GoogleService-Info.plist in Resources */,
 				07BF6AD129EC459800986AF7 /* coin.json in Resources */,
 			);
@@ -666,7 +670,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6WZYJKR3V9;
+				DEVELOPMENT_TEAM = S4K8SAN9WG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
@@ -680,7 +684,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kangho.BC2;
+				PRODUCT_BUNDLE_IDENTIFIER = ain.BC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -695,7 +699,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6WZYJKR3V9;
+				DEVELOPMENT_TEAM = S4K8SAN9WG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BC2/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 접근";
@@ -709,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kangho.BC2;
+				PRODUCT_BUNDLE_IDENTIFIER = ain.BC2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

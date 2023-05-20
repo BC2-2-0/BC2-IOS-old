@@ -40,6 +40,43 @@ class StartViewController: BaseVC{
         $0.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 이전에 로그인한 사용자가 있는 경우 자동으로 로그인
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if let error = error {
+                // 오류가 발생한 경우
+                print("이전 로그인 복원 실패: \(error.localizedDescription)")
+                // 원하는 작업을 수행하거나 로그인 화면을 표시할 수 있습니다.
+            } else if let user = user {
+                // 이전 로그인이 성공한 경우
+                print("이전 로그인 복원 성공: \(user)")
+                // 원하는 작업을 수행하거나 다음 화면으로 이동할 수 있습니다.
+                // Firebase에 로그인한 후에 필요한 작업 수행
+                    if let user = Auth.auth().currentUser {
+                        let email = user.email
+                        let name = user.displayName
+                        self.userEmail = email ?? "Unknown"
+                        self.userName = name ?? "Unknown"
+                    }
+                    
+                    let mainVC = MainViewController()
+                    mainVC.userName = self.userName
+                    mainVC.userEmail = self.userEmail
+                    
+                    DispatchQueue.main.async {
+                        // 메인 뷰로 이동
+                        self.navigationController?.setViewControllers([mainVC], animated: false)
+                    }
+            } else {
+                // 이전에 로그인한 사용자가 없는 경우
+                print("이전 로그인한 사용자 없음")
+                // 원하는 작업을 수행하거나 로그인 화면을 표시할 수 있습니다.
+            }
+        }
+    }
+    
     override func addView() {
         view.addSubview(mainLabel)
         view.addSubview(subLabel)
