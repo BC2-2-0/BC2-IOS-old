@@ -84,7 +84,7 @@ func charge(email: String, balance: Int, charged_money: Int, completion: @escapi
 import Foundation
 
 //충전 요청 함수
-func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int, completion: @escaping (Result<Void, Error>) -> Void) {
+func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: Int,number: Int, completion: @escaping (Result<Void, Error>) -> Void) {
     let urlString = APIConstants.QRURL
     guard let url = URL(string: urlString) else {
         print("유효하지 않은 URL입니다.")
@@ -102,7 +102,8 @@ func QRPayment(email: String,balance: Int, menu: String, price: Int, quantity: I
         "balance": balance,
         "menu": menu,
         "price": price,
-        "quantity": quantity
+        "quantity": quantity,
+        "number": number
     ] as [String : Any]
     
     request.httpBody = try! JSONSerialization.data(withJSONObject: requestBody)

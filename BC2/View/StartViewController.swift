@@ -110,7 +110,7 @@ class StartViewController: BaseVC{
                     let nextVC = MainViewController()
                     nextVC.userName = self.userName
                     nextVC.userEmail = self.userEmail
-                    self.navigationController?.pushViewController(nextVC, animated: false)
+                    self.navigationController?.setViewControllers([nextVC], animated: false)
                 }
             }
             

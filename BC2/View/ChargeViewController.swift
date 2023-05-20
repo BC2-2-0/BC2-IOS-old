@@ -180,12 +180,16 @@ class ChargeViewController: BaseVC, UITextFieldDelegate {
                 }
                 let currentMoney = UserDefaults.standard.integer(forKey: "money")
                 let balance = currentMoney + amount
+                UserDefaults.standard.setValue(balance, forKey: "money")
                 let charge = ChargeRealmEntity(balance: "\(balance)", charged_money: "\(amount)", emailHash: SHA256.hash(data: self.email.data(using: .utf8)!).compactMap { String(format: "%02x", $0)}.joined())
                 let realm = try! Realm()
                 
                 try! realm.write {
                     realm.add(charge)
                 }
+                
+                let nextVC = ChargeSuccessViewController()
+                self.navigationController?.pushViewController(nextVC, animated: false)
                 
                 print("-- done: (data)")
             }

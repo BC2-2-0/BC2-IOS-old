@@ -372,10 +372,9 @@ extension MainViewController {
     }
     
     @objc func goToQR(){
-        let nextVC = QRCodeReaderViewController()
-        nextVC.myMoney = amount
+        let nextVC = ReaderViewController()
         nextVC.userEmail = self.userEmail
-        nextVC.modalPresentationStyle = .overCurrentContext
+        nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }
     
