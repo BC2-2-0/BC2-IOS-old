@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import EventSource
 
 class MiningViewController: BaseVC {
+    var isRandomCodeRunning = true
     
     var userName: String = " "
     var userEmail: String = " "
@@ -16,6 +18,8 @@ class MiningViewController: BaseVC {
     
     var codeArray: Array<Int> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     var arrString = ""
+    
+    private var eventSource = EventSource(request: .init(url: URL(string: "http://13.125.77.165:3000/receive")!))
     
     private let headerView = Header()
     
@@ -118,16 +122,17 @@ class MiningViewController: BaseVC {
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(coin.snp.bottom).offset(37)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
         mainButton.snp.makeConstraints{
             $0.width.equalTo(288)
             $0.height.equalTo(45)
             $0.top.equalTo(miningCodeButton.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(53)
+            $0.centerX.equalToSuperview()
         }
     }
     override func configNavigation() {
+<<<<<<< HEAD
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backButton.tintColor = .black
         self.navigationItem.backBarButtonItem = backButton
@@ -135,11 +140,20 @@ class MiningViewController: BaseVC {
         self.navigationItem.hidesBackButton = true
     }
     
+=======
+        self.navigationItem.hidesBackButton = true
+    }
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
     func randomCode(){
+        serverSendEvent()
+        print(myData.moneyValue)
+        myMoney = UserDefaults.standard.integer(forKey: "money")
+        print(myMoney)
+        showMoney()
         DispatchQueue.global().async { [self] in
             let temp = 15
             var ranNum: Int
-            while true{
+            while isRandomCodeRunning{
                 
                 arrString = ""
                 for _ in 0...temp {
@@ -147,7 +161,7 @@ class MiningViewController: BaseVC {
                     codeArray[temp] = ranNum
                     arrString += String(ranNum,radix:16)
                 }
-//                print("\(arrString)")
+                print("\(arrString)")
                 
                 DispatchQueue.main.async {
                     miningCodeButton.setTitle(arrString, for: .normal)
@@ -157,14 +171,21 @@ class MiningViewController: BaseVC {
                     DispatchQueue.main.async {
                         coinAction.play()
                         addMoney()
-                        charge(email: self.userEmail, balance: self.myMoney, charged_money: 100)
+                        print("asdf", myMoney)
+                        UserDefaults.standard.setValue(myMoney, forKey: "money")
                     }
                 }
                 Thread.sleep(forTimeInterval: 1)
             }
         }
+        print(myMoney)
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        Task {
+            await eventSource.close()
+        }
+    }
     func changeNameLabel() {
         let result: String = userName
         headerView.userNameLabel.text = result + "님"
@@ -186,7 +207,12 @@ class MiningViewController: BaseVC {
         let result: String = moneyFormatter.string(for: myMoney)! + " 원"
         boxInLabel.amountLabel.text = result
     }
-    
+    func showMoney() {
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        let result: String = moneyFormatter.string(for: myMoney)! + " 원"
+        boxInLabel.amountLabel.text = result
+    }
     func addMoney() {
         myMoney += 100
         let moneyFormatter: NumberFormatter = NumberFormatter()
@@ -195,12 +221,51 @@ class MiningViewController: BaseVC {
         boxInLabel.amountLabel.text = result
     }
     
+    func serverSendEvent(){
+        let eventSourceURL = "http://13.125.77.165:3000/receive"
+        eventSource.connect()
+        
+        Task {
+            for await event in eventSource.events {
+                switch event {
+                case .open:
+                    print("성공")
+                    print("Connection was opened.")
+                case .error(let error):
+                    print("에러")
+                    print("Received an error:", error.localizedDescription)
+                case .message(let message):
+                    print("메시지")
+                    print("Received a message", message.data ?? "데이터 없음")
+                    
+                    do {
+                        let response = try JSONDecoder().decode(ChargeResponse
+                            .self, from: message.data!.data(using: .utf8)!)
+                        myMoney = UserDefaults.standard.integer(forKey: "money") + 10
+                        
+                        showMoney()
+                        UserDefaults.standard.setValue(myMoney, forKey: "money")
+                        
+                    } catch {
+                        
+                    }
+                case .closed:
+                    print("Connection was closed.")
+                }
+            }
+        }
+        
+    }
+    
     @objc func goToMain(){
         let nextVC = MainViewController()
         nextVC.amount = myMoney
         nextVC.userName = self.userName
-        //nextVC.userEmail = self.userEmail
-        self.navigationController?.pushViewController(nextVC, animated: false)
+        nextVC.userEmail = self.userEmail
+        
+        isRandomCodeRunning = false
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func goInfo(){

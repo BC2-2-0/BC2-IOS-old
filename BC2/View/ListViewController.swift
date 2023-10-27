@@ -9,8 +9,17 @@ import UIKit
 import SnapKit
 import Then
 import Lottie
+<<<<<<< HEAD
 class ListViewController: BaseVC {
     
+=======
+import RealmSwift
+class ListViewController: BaseVC {
+    
+    private var paymentList = [PaymentRealmEntity] ()
+    
+    private var chargeList = [ChargeRealmEntity] ()
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
     let firstLabel = PaymentListMainLabel()
 
     let tableViewBG = UIView().then {
@@ -59,6 +68,15 @@ class ListViewController: BaseVC {
             BC2TableViewCell.self,
             forCellReuseIdentifier: "cell")
     }
+<<<<<<< HEAD
+=======
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let realm = try! Realm()
+        self.paymentList = Array(realm.objects(PaymentRealmEntity.self))
+        self.chargeList = Array(realm.objects(ChargeRealmEntity.self))
+    }
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
     override func addView() {
         view.addSubview(tableViewBG)
         view.addSubview(firstLabel)
@@ -110,10 +128,13 @@ class ListViewController: BaseVC {
         rechargeDetailTableView.dataSource = self
     }
     override func configNavigation() {
+<<<<<<< HEAD
         let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         backButton.tintColor = .black
         self.navigationItem.backBarButtonItem = backButton
         self.view.backgroundColor = .white
+=======
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
         self.navigationItem.hidesBackButton = false
     }
 }
@@ -135,14 +156,22 @@ extension ListViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == rechargeDetailTableView {
+<<<<<<< HEAD
             return 5
         }
         else{
             return 10
+=======
+            return chargeList.count
+        }
+        else{
+            return paymentList.count
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BC2TableViewCell
+<<<<<<< HEAD
         cell.customLabel.text = "Custom cell \(indexPath.row)"
         cell.numberLabel.text = "\(indexPath.row + 1)"
         if tableView == rechargeDetailTableView {
@@ -165,6 +194,19 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
+=======
+        cell.numberLabel.text = "\(indexPath.row + 1)"
+        
+        let moneyFormatter: NumberFormatter = NumberFormatter()
+        moneyFormatter.numberStyle = .decimal
+        
+        if tableView == rechargeDetailTableView {
+            cell.customLabel.text = "\(chargeList[indexPath.row].emailHash.prefix(16))"
+            let rechargeMoney = moneyFormatter.string(for: Int(chargeList[indexPath.row].charged_money)!)
+            cell.rechargeLabel.text = "충전 금액 : \(rechargeMoney ?? " ")"
+            let moneyBalance = moneyFormatter.string(for: Int(chargeList[indexPath.row].balance)!)
+            cell.rechargeBalanceLabel.text = "잔액 : \(moneyBalance ?? " ")"
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
             cell.itemLabel.isHidden = true
             cell.countLabel.isHidden = true
             cell.paymentAmountLabel.isHidden = true
@@ -173,6 +215,16 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.rechargeBalanceLabel.isHidden = false
         }
         else {
+<<<<<<< HEAD
+=======
+            cell.customLabel.text = "\(paymentList[indexPath.row].emailHash.prefix(16))"
+            cell.itemLabel.text = "품목 : \(paymentList[indexPath.row].menu)"
+            cell.countLabel.text = "개수 : \(paymentList[indexPath.row].quantity)"
+            let paymentMoney = moneyFormatter.string(for: Int(paymentList[indexPath.row].price)! * Int(paymentList[indexPath.row].quantity)!)
+            cell.paymentAmountLabel.text = "결제 금액 : \(paymentMoney ?? " ")"
+            let paymentBalance = moneyFormatter.string(for: Int(paymentList[indexPath.row].balance)!)
+            cell.paymentBalanceLabel.text = "잔액 : \(paymentBalance ?? " ")"
+>>>>>>> 2708f5441fe821283a2c71f5890295e055ef0112
             cell.itemLabel.isHidden = false
             cell.countLabel.isHidden = false
             cell.paymentAmountLabel.isHidden = false

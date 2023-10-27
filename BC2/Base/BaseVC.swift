@@ -12,6 +12,12 @@ import Lottie
 
 class BaseVC: UIViewController {
 
+    lazy var success = LottieAnimationView(name: "success").then {
+        $0.contentMode = .scaleAspectFill
+        $0.loopMode = .loop
+        $0.play()
+    }
+    
     lazy var block = LottieAnimationView(name: "block").then {
         $0.contentMode = .scaleAspectFill
         $0.loopMode = .loop
@@ -33,6 +39,7 @@ class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        realmConnection()
         addView()
         setLayout()
         addTarget()
@@ -43,7 +50,7 @@ class BaseVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
     }
-    
+    func realmConnection(){}
     func addView(){}
     func setLayout(){}
     func addTarget(){}
