@@ -37,16 +37,17 @@ class BaseVC: UIViewController {
         setLayout()
         addTarget()
         delegate()
+        configNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
-         self.navigationItem.hidesBackButton = true
     }
     
     func addView(){}
     func setLayout(){}
     func addTarget(){}
     func delegate(){}
+    func configNavigation(){}
 }
 

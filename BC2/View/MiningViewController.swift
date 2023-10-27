@@ -127,6 +127,13 @@ class MiningViewController: BaseVC {
             $0.leading.equalToSuperview().offset(53)
         }
     }
+    override func configNavigation() {
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backButton.tintColor = .black
+        self.navigationItem.backBarButtonItem = backButton
+        self.view.backgroundColor = .white
+        self.navigationItem.hidesBackButton = true
+    }
     
     func randomCode(){
         DispatchQueue.global().async { [self] in
